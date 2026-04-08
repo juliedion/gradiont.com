@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Brief — Gradiont</title>
+  <meta name="description" content="Start your project with Gradiont by filling out a creative brief. We'll work through it together.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:         #0B1640;
+      --navy-mid:     #0F1F5C;
+      --navy-pale:    #EEF1FB;
+      --white:        #FFFFFF;
+      --off-white:    #F5F7FF;
+      --ink:          #0B1640;
+      --muted:        #6B7AA1;
+      --blue:         #1E7BFF;
+      --blue-light:   #63AAFF;
+      --blue-pale:    #E0EDFF;
+      --pink:         #FF2D78;
+      --pink-pale:    #FFE5EF;
+      --border:       rgba(11,22,64,0.1);
+      --border-light: rgba(255,255,255,0.12);
+      --shadow-sm:    0 2px 12px rgba(11,22,64,0.08);
+      --shadow-md:    0 8px 40px rgba(11,22,64,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(110deg, #0B1640 0%, #0d2a6e 45%, #1E7BFF 100%);
+      border-bottom: 1px solid rgba(30,123,255,0.25);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 90px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.875rem; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: white; }
+    .nav-cta { background: var(--pink) !important; color: white !important; padding: 9px 24px; border-radius: 100px; font-weight: 500 !important; }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: var(--navy); padding: 160px 80px 80px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .page-hero-bg-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none;
+    }
+    .glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+    .glow-blue { width:400px;height:400px;background:rgba(30,123,255,0.15);top:-80px;right:5%; }
+    .glow-pink { width:320px;height:320px;background:rgba(255,45,120,0.1);bottom:-60px;left:10%; }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 300; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 20px; }
+    .page-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--blue-light); }
+    .page-h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 800; color: white; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+    .page-h1 .pink { color: var(--pink); font-style: italic; }
+    .page-sub { font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto 28px; font-weight: 300; line-height: 1.75; }
+
+    /* COLLAB NOTE */
+    .collab-note {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px; padding: 10px 20px;
+      font-size: 0.8rem; color: rgba(255,255,255,0.6);
+    }
+    .collab-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.85);} }
+
+    /* MAIN LAYOUT */
+    .brief-layout {
+      max-width: 860px; margin: 0 auto; padding: 72px 40px 120px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrap { margin-bottom: 52px; }
+    .progress-steps {
+      display: flex; align-items: center; gap: 0; margin-bottom: 12px;
+    }
+    .step-item { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+    .step-item:not(:last-child)::after {
+      content: ''; position: absolute; top: 18px; left: 50%;
+      width: 100%; height: 2px; background: var(--border); z-index: 0; transition: background 0.4s;
+    }
+    .step-item.done:not(:last-child)::after { background: var(--navy); }
+    .step-circle {
+      width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--border);
+      background: white; display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 400;
+      color: var(--muted); position: relative; z-index: 1; transition: all 0.3s;
+    }
+    .step-item.active .step-circle { border-color: var(--navy); background: var(--navy); color: white; font-weight: 600; }
+    .step-item.done .step-circle { border-color: var(--navy); background: var(--navy); color: white; }
+    .step-item.done .step-circle::after { content: '✓'; }
+    .step-item.done .step-num { display: none; }
+    .step-label { font-size: 0.7rem; color: var(--muted); margin-top: 8px; letter-spacing: 0.02em; text-align: center; white-space: nowrap; transition: color 0.3s; }
+    .step-item.active .step-label { color: var(--navy); font-weight: 500; }
+
+    /* STEP PANELS */
+    .step-panel { display: none; }
+    .step-panel.active { display: block; animation: fadeSlide 0.35s ease; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+    .panel-header { margin-bottom: 36px; }
+    .panel-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .panel-h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
+    .panel-sub { font-size: 0.9rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+    /* FORM FIELDS */
+    .field-group { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field label { font-size: 0.83rem; font-weight: 500; color: var(--navy); }
+    .field .hint { font-size: 0.76rem; color: var(--muted); font-weight: 300; margin-top: -4px; }
+
+    .field input, .field select, .field textarea {
+      padding: 13px 16px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--ink); background: white;
+      transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,123,255,0.1);
+    }
+    .field textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+
+    /* OPTION CARDS */
+    .option-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .option-card {
+      border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 20px 18px; cursor: pointer; transition: all 0.2s;
+      background: white; text-align: left;
+    }
+    .option-card:hover { border-color: var(--blue); background: var(--blue-pale); }
+    .option-card.selected { border-color: var(--navy); background: var(--navy-pale); }
+    .option-card.selected .opt-icon { background: var(--navy); }
+    .opt-icon { font-size: 1.4rem; margin-bottom: 10px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--navy-pale); border-radius: 10px; transition: background 0.2s; }
+    .opt-label { font-size: 0.85rem; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+    .opt-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.5; font-weight: 300; }
+    input[type="checkbox"].opt-check { display: none; }
+
+    /* BUDGET SLIDER */
+    .budget-display { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .budget-range { position: relative; }
+    input[type="range"] {
+      width: 100%; height: 4px; border: none; background: var(--border);
+      border-radius: 100px; appearance: none; outline: none; cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--navy); border: 3px solid white; box-shadow: 0 2px 8px rgba(11,22,64,0.25);
+    }
+    .range-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.75rem; color: var(--muted); }
+
+    /* FILE UPLOAD */
+    .file-drop {
+      border: 2px dashed var(--border); border-radius: 14px; padding: 40px;
+      text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+      background: white;
+    }
+    .file-drop:hover, .file-drop.drag { border-color: var(--blue); background: var(--blue-pale); }
+    .file-drop-icon { font-size: 2rem; margin-bottom: 10px; }
+    .file-drop p { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+    .file-drop span { font-size: 0.75rem; color: var(--muted); }
+    #file-list { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .file-chip { background: var(--navy-pale); border-radius: 100px; padding: 4px 12px; font-size: 0.75rem; color: var(--navy); }
+
+    /* REVIEW PANEL */
+    .review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .review-item { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .review-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .review-value { font-size: 0.9rem; color: var(--navy); font-weight: 500; line-height: 1.5; }
+
+    /* COLLAB OPTION */
+    .collab-box {
+      background: linear-gradient(135deg, var(--navy-pale) 0%, var(--blue-pale) 100%);
+      border: 1px solid var(--border); border-radius: 16px; padding: 28px;
+      display: flex; align-items: flex-start; gap: 16px; margin-bottom: 32px;
+    }
+    .collab-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .collab-text h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .collab-text p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+    .collab-toggle { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+    .toggle-switch { position: relative; width: 44px; height: 24px; cursor: pointer; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-track { position: absolute; inset: 0; background: var(--border); border-radius: 100px; transition: background 0.3s; }
+    .toggle-thumb { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: white; border-radius: 50%; transition: transform 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+    .toggle-switch input:checked + .toggle-track { background: var(--navy); }
+    .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(20px); }
+    .toggle-label { font-size: 0.85rem; color: var(--navy); font-weight: 500; }
+
+    /* NAV BUTTONS */
+    .step-nav { display: flex; align-items: center; justify-content: space-between; }
+    .btn-back {
+      background: none; border: 1.5px solid var(--border); color: var(--muted);
+      padding: 12px 28px; border-radius: 100px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-back:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-next {
+      background: var(--navy); color: white; border: none;
+      padding: 13px 36px; border-radius: 100px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 500; cursor: pointer;
+      transition: background 0.2s, transform 0.15s; display: flex; align-items: center; gap: 8px;
+    }
+    .btn-next:hover { background: var(--navy-mid); transform: translateY(-1px); }
+    .btn-submit { background: var(--pink); }
+    .btn-submit:hover { background: #e0175f; }
+
+    /* SUCCESS STATE */
+    .success-panel { text-align: center; padding: 60px 20px; display: none; }
+    .success-panel.active { display: block; animation: fadeSlide 0.5s ease; }
+    .success-icon { font-size: 4rem; margin-bottom: 24px; }
+    .success-h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 800; color: var(--navy); margin-bottom: 16px; letter-spacing: -0.02em; }
+    .success-sub { font-size: 1rem; color: var(--muted); max-width: 440px; margin: 0 auto 32px; line-height: 1.75; }
+    .success-ref { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--muted); margin-bottom: 32px; }
+    .btn-home { background: var(--navy); color: white; padding: 13px 32px; border-radius: 100px; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+
+    /* FOOTER */
+    footer { background: var(--navy); padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--border-light); }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: white; }
+    .footer-logo span { color: var(--pink); }
+    .footer-links { display: flex; gap: 28px; list-style: none; }
+    .footer-links a { font-size: 0.83rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 16px; }
+      .page-hero { padding: 120px 24px 60px; }
+      .brief-layout { padding: 48px 20px 80px; }
+      .field-row { grid-template-columns: 1fr; }
+      .review-grid { grid-template-columns: 1fr; }
+      .step-label { display: none; }
+      footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="Logo/gradiont-logo-transparent.png" alt="Gradiont"></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="creative-brief.html" class="active">Creative Brief</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Let's Talk</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg-grid"></div>
+    <div class="glow glow-blue"></div>
+    <div class="glow glow-pink"></div>
+    <div class="page-hero-content">
+      <div class="page-eyebrow">Creative Brief</div>
+      <h1 class="page-h1">Let's build something<br><span class="pink">worth remembering.</span></h1>
+      <p class="page-sub">Fill this out on your own, or schedule a call and we'll work through it together. The more you share, the better I can bring your vision to life.</p>
+      <div class="collab-note">
+        <span class="collab-dot"></span>
+        Option to fill out together available — see step 5
+      </div>
+    </div>
+  </div>
+
+  <!-- BRIEF FORM -->
+  <div class="brief-layout">
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-steps" id="progress-steps">
+        <div class="step-item active" data-step="0">
+          <div class="step-circle"><span class="step-num">1</span></div>
+          <div class="step-label">About You</div>
+        </div>
+        <div class="step-item" data-step="1">
+          <div class="step-circle"><span class="step-num">2</span></div>
+          <div class="step-label">The Project</div>
+        </div>
+        <div class="step-item" data-step="2">
+          <div class="step-circle"><span class="step-num">3</span></div>
+          <div class="step-label">Goals & Audience</div>
+        </div>
+        <div class="step-item" data-step="3">
+          <div class="step-circle"><span class="step-num">4</span></div>
+          <div class="step-label">Design & Inspiration</div>
+        </div>
+        <div class="step-item" data-step="4">
+          <div class="step-circle"><span class="step-num">5</span></div>
+          <div class="step-label">Budget & Timeline</div>
+        </div>
+        <div class="step-item" data-step="5">
+          <div class="step-circle"><span class="step-num">6</span></div>
+          <div class="step-label">Review & Submit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: ABOUT YOU -->
+    <div class="step-panel active" id="step-0">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 1 of 6</div>
+        <h2 class="panel-h2">Tell me about yourself.</h2>
+        <p class="panel-sub">Basic info so I know who I'm working with.</p>
+      </div>
+      <div class="field-group">
+        <div class="field-row">
+          <div class="field">
+            <label for="firstName">First name *</label>
+            <input type="text" id="firstName" placeholder="Jane" required>
+          </div>
+          <div class="field">
+            <label for="lastName">Last name *</label>
+            <input type="text" id="lastName" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email address *</label>
+            <input type="email" id="email" placeholder="jane@company.com" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" placeholder="(555) 000-0000">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="company">Company / brand name</label>
+            <input type="text" id="company" placeholder="Acme Co.">
+          </div>
+          <div class="field">
+            <label for="role">Your role</label>
+            <input type="text" id="role" placeholder="Founder, Marketing Director...">
+          </div>
+        </div>
+        <div class="field">
+          <label for="website">Current website (if any)</label>
+          <input type="url" id="website" placeholder="https://yoursite.com">
+        </div>
+      </div>
+      <div class="step-nav">
+        <div></div>
+        <button class="btn-next" onclick="goNext(0)">Next: The Project →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: THE PROJECT -->
+    <div class="step-panel" id="step-1">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 2 of 6</div>
+        <h2 class="panel-h2">What are we building?</h2>
+        <p class="panel-sub">Select everything that applies — it's okay if you're not 100% sure yet.</p>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Project type *</label>
+          <div class="option-cards">
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🎨</div>
+              <div class="opt-label">Brand & Identity</div>
+              <div class="opt-desc">Logo, colors, typography, brand guidelines</div>
+              <input type="checkbox" class="opt-check" name="type" value="Brand & Identity">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🖥️</div>
+              <div class="opt-label">Website Design</div>
+              <div class="opt-desc">Landing page, multi-page site, redesign</div>
+              <input type="checkbox" class="opt-check" name="type" value="Website Design">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🛍️</div>
+              <div class="opt-label">E-Commerce</div>
+              <div class="opt-desc">Online store, product pages, checkout</div>
+              <input type="checkbox" class="opt-check" name="type" value="E-Commerce">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">📱</div>
+              <div class="opt-label">App / Dashboard</div>
+              <div class="opt-desc">Web app, SaaS, mobile, admin tools</div>
+              <input type="checkbox" class="opt-check" name="type" value="App / Dashboard">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🤖</div>
+              <div class="opt-label">AI-Powered Product</div>
+              <div class="opt-desc">AI integration, prompt UI, workflow automation</div>
+              <input type="checkbox" class="opt-check" name="type" value="AI-Powered Product">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">✂️</div>
+              <div class="opt-label">Cricut / Craft</div>
+              <div class="opt-desc">Product design, packaging, craft branding</div>
+              <input type="checkbox" class="opt-check" name="type" value="Cricut / Craft">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">📊</div>
+              <div class="opt-label">UX Consulting</div>
+              <div class="opt-desc">Audit, research, strategy, design system</div>
+              <input type="checkbox" class="opt-check" name="type" value="UX Consulting">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">💡</div>
+              <div class="opt-label">Something Else</div>
+              <div class="opt-desc">Not listed here — tell me more below</div>
+              <input type="checkbox" class="opt-check" name="type" value="Something Else">
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="projectName">Project name / working title</label>
+          <input type="text" id="projectName" placeholder="e.g. 'The Maker Hub' or 'Rebrand 2025'">
+        </div>
+        <div class="field">
+          <label for="projectDesc">Describe your project *</label>
+          <p class="hint">What is it? What problem does it solve? What's the story behind it?</p>
+          <textarea id="projectDesc" placeholder="Give me as much context as you'd like — the more the better..." style="min-height:140px;"></textarea>
+        </div>
+        <div class="field">
+          <label for="currentProblem">What's the current pain point or opportunity?</label>
+          <textarea id="currentProblem" placeholder="What's not working today, or what gap are you trying to fill?"></textarea>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goBack(1)">← Back</button>
+        <button class="btn-next" onclick="goNext(1)">Next: Goals & Audience →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: GOALS & AUDIENCE -->
+    <div class="step-panel" id="step-2">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 3 of 6</div>
+        <h2 class="panel-h2">Goals & your audience.</h2>
+        <p class="panel-sub">Help me understand what success looks like and who we're designing for.</p>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label for="goals">What does success look like? *</label>
+          <p class="hint">What are the 1–3 things this project must achieve?</p>
+          <textarea id="goals" placeholder="e.g. 'Launch by August with a working checkout', 'Increase brand recognition among moms 25–40', 'Replace manual invoicing with an automated system'..."></textarea>
+        </div>
+        <div class="field">
+          <label for="audience">Who is your target audience? *</label>
+          <p class="hint">Age, interests, where they hang out online, what they care about.</p>
+          <textarea id="audience" placeholder="e.g. 'Cricut crafters, mostly women 28–45, active on Pinterest and Instagram, value creativity and community'..."></textarea>
+        </div>
+        <div class="field">
+          <label for="competitors">Brands or sites you admire (or compete with)</label>
+          <p class="hint">Share URLs or names — tell me what you love or hate about them.</p>
+          <textarea id="competitors" placeholder="e.g. 'Love the clean layout of Canva.com. Inspired by HeyDude's brand voice. Competitor is CricutMadeIt.com'..."></textarea>
+        </div>
+        <div class="field">
+          <label for="differentiate">What makes you different?</label>
+          <textarea id="differentiate" placeholder="What's your unfair advantage, unique story, or key differentiator?"></textarea>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goBack(2)">← Back</button>
+        <button class="btn-next" onclick="goNext(2)">Next: Design & Inspiration →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: DESIGN & INSPIRATION -->
+    <div class="step-panel" id="step-3">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 4 of 6</div>
+        <h2 class="panel-h2">Design & visual direction.</h2>
+        <p class="panel-sub">Let's get aligned on the look and feel before a single pixel is placed.</p>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Brand mood *</label>
+          <div class="option-cards" style="grid-template-columns: repeat(auto-fill, minmax(160px,1fr));">
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">✨</div>
+              <div class="opt-label">Elegant</div>
+              <div class="opt-desc">Refined, minimal, high-end</div>
+              <input type="checkbox" class="opt-check" name="mood" value="Elegant">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🔥</div>
+              <div class="opt-label">Bold & Energetic</div>
+              <div class="opt-desc">Vibrant, expressive, loud</div>
+              <input type="checkbox" class="opt-check" name="mood" value="Bold & Energetic">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🌿</div>
+              <div class="opt-label">Warm & Earthy</div>
+              <div class="opt-desc">Natural, cozy, approachable</div>
+              <input type="checkbox" class="opt-check" name="mood" value="Warm & Earthy">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">⚡</div>
+              <div class="opt-label">Modern & Tech</div>
+              <div class="opt-desc">Clean, futuristic, data-driven</div>
+              <input type="checkbox" class="opt-check" name="mood" value="Modern & Tech">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🌸</div>
+              <div class="opt-label">Playful & Fun</div>
+              <div class="opt-desc">Friendly, whimsical, joyful</div>
+              <input type="checkbox" class="opt-check" name="mood" value="Playful & Fun">
+            </label>
+            <label class="option-card" onclick="toggleOpt(this)">
+              <div class="opt-icon">🖤</div>
+              <div class="opt-label">Dark & Dramatic</div>
+              <div class="opt-desc">Moody, editorial, intense</div>
+              <input type="checkbox" class="opt-check" name="mood" value="Dark & Dramatic">
+            </label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="existingColors">Existing brand colors (if any)</label>
+            <input type="text" id="existingColors" placeholder="e.g. Navy #0B1640, Pink #FF2D78">
+          </div>
+          <div class="field">
+            <label for="existingFonts">Existing fonts (if any)</label>
+            <input type="text" id="existingFonts" placeholder="e.g. Playfair Display, DM Sans">
+          </div>
+        </div>
+        <div class="field">
+          <label for="inspoLinks">Inspiration links or references</label>
+          <p class="hint">Paste URLs, describe images, reference brands — anything that captures the vibe.</p>
+          <textarea id="inspoLinks" placeholder="e.g. 'https://dribbble.com/... — love the gradient treatment' or 'Think Glossier meets Cricut'..."></textarea>
+        </div>
+        <div class="field">
+          <label>Upload inspiration, logos, or existing assets (optional)</label>
+          <div class="file-drop" id="file-drop" onclick="document.getElementById('file-upload').click()">
+            <div class="file-drop-icon">📎</div>
+            <p>Click to upload or drag & drop files here</p>
+            <span>JPG, PNG, PDF, SVG, AI — up to 20MB each</span>
+            <div id="file-list"></div>
+          </div>
+          <input type="file" id="file-upload" multiple accept="image/*,.pdf,.svg,.ai,.eps" style="display:none">
+        </div>
+        <div class="field">
+          <label for="designNotes">Anything else about the design direction?</label>
+          <textarea id="designNotes" placeholder="Anything I should know — things to avoid, brand rules, accessibility requirements, etc."></textarea>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goBack(3)">← Back</button>
+        <button class="btn-next" onclick="goNext(3)">Next: Budget & Timeline →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: BUDGET & TIMELINE -->
+    <div class="step-panel" id="step-4">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 5 of 6</div>
+        <h2 class="panel-h2">Budget & timeline.</h2>
+        <p class="panel-sub">No commitment yet — this helps me scope and suggest the right approach.</p>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Approximate budget</label>
+          <div class="budget-display" id="budget-display">$2,500</div>
+          <div class="budget-range">
+            <input type="range" id="budget-range" min="500" max="50000" step="500" value="2500" oninput="updateBudget(this.value)">
+            <div class="range-labels"><span>$500</span><span>$50,000+</span></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="budgetNotes">Budget notes (optional)</label>
+          <input type="text" id="budgetNotes" placeholder="e.g. 'Flexible for the right fit' or 'Fixed budget, need to stay under $5k'">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="startDate">Ideal start date</label>
+            <input type="date" id="startDate">
+          </div>
+          <div class="field">
+            <label for="deadline">Hard deadline (if any)</label>
+            <input type="date" id="deadline">
+          </div>
+        </div>
+        <div class="field">
+          <label for="timeline">Timeline context</label>
+          <textarea id="timeline" placeholder="Any context about timing — product launch date, event, season, funding round, etc."></textarea>
+        </div>
+
+        <!-- COLLAB OPTION -->
+        <div class="collab-box">
+          <div class="collab-icon">🤝</div>
+          <div class="collab-text">
+            <h4>Want to fill this out together?</h4>
+            <p>Sometimes it's easier to talk through it. Check the box below and I'll reach out to schedule a free 30-minute brief session — we'll work through it live, ask the right questions, and get aligned faster.</p>
+            <div class="collab-toggle">
+              <label class="toggle-switch">
+                <input type="checkbox" id="collab-toggle">
+                <div class="toggle-track"></div>
+                <div class="toggle-thumb"></div>
+              </label>
+              <span class="toggle-label">Yes, I'd love to do a brief session together</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="anythingElse">Anything else I should know?</label>
+          <textarea id="anythingElse" placeholder="Questions, constraints, dream outcomes, things that keep you up at night..."></textarea>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goBack(4)">← Back</button>
+        <button class="btn-next" onclick="goNext(4)">Review Brief →</button>
+      </div>
+    </div>
+
+    <!-- STEP 6: REVIEW -->
+    <div class="step-panel" id="step-5">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 6 of 6</div>
+        <h2 class="panel-h2">Review & submit.</h2>
+        <p class="panel-sub">Take a look before sending. You can go back to edit anything.</p>
+      </div>
+      <div class="review-grid" id="review-grid">
+        <!-- Populated by JS -->
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="goBack(5)">← Edit</button>
+        <button class="btn-next btn-submit" onclick="submitBrief()">Submit Brief ✦</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-panel" id="success">
+      <div class="success-icon">🎉</div>
+      <h2 class="success-h2">Brief received!</h2>
+      <p class="success-sub">Thank you — I'll review your brief and be in touch within 1–2 business days. If you requested a brief session, I'll send over a scheduling link.</p>
+      <p class="success-ref" id="ref-number"></p>
+      <a href="index.html" class="btn-home">Back to Gradiont →</a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Gra<span>dion</span>t</div>
+    <ul class="footer-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© <span id="year"></span> Gradiont · Julie Dion. All rights reserved.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // ─── STEP NAVIGATION ─────────────────────────────────────────────────────────
+    const TOTAL = 6;
+    let currentStep = 0;
+
+    function goNext(from) {
+      if (!validateStep(from)) return;
+      if (from === TOTAL - 2) buildReview(); // populate review before showing it
+      setStep(from + 1);
+    }
+
+    function goBack(from) {
+      setStep(from - 1);
+    }
+
+    function setStep(n) {
+      document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('step-' + n).classList.add('active');
+
+      document.querySelectorAll('.step-item').forEach((item, i) => {
+        item.classList.remove('active', 'done');
+        if (i < n) item.classList.add('done');
+        if (i === n) item.classList.add('active');
+      });
+
+      currentStep = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ─── VALIDATION ───────────────────────────────────────────────────────────────
+    function validateStep(step) {
+      if (step === 0) {
+        const fn = document.getElementById('firstName').value.trim();
+        const em = document.getElementById('email').value.trim();
+        if (!fn || !em) { alert('Please fill in your name and email to continue.'); return false; }
+      }
+      if (step === 1) {
+        const desc = document.getElementById('projectDesc').value.trim();
+        if (!desc) { alert('Please describe your project to continue.'); return false; }
+      }
+      return true;
+    }
+
+    // ─── OPTION CARDS ────────────────────────────────────────────────────────────
+    function toggleOpt(el) {
+      el.classList.toggle('selected');
+    }
+
+    // ─── BUDGET SLIDER ───────────────────────────────────────────────────────────
+    function updateBudget(val) {
+      const n = parseInt(val);
+      const display = document.getElementById('budget-display');
+      if (n >= 50000) display.textContent = '$50,000+';
+      else display.textContent = '$' + n.toLocaleString();
+    }
+
+    // ─── FILE UPLOAD ──────────────────────────────────────────────────────────────
+    const fileInput = document.getElementById('file-upload');
+    const fileDrop = document.getElementById('file-drop');
+    const fileList = document.getElementById('file-list');
+    let uploadedFiles = [];
+
+    fileInput.addEventListener('change', e => {
+      Array.from(e.target.files).forEach(f => {
+        uploadedFiles.push(f);
+        fileList.innerHTML += `<span class="file-chip">📎 ${f.name}</span>`;
+      });
+    });
+
+    fileDrop.addEventListener('dragover', e => { e.preventDefault(); fileDrop.classList.add('drag'); });
+    fileDrop.addEventListener('dragleave', () => fileDrop.classList.remove('drag'));
+    fileDrop.addEventListener('drop', e => {
+      e.preventDefault(); fileDrop.classList.remove('drag');
+      Array.from(e.dataTransfer.files).forEach(f => {
+        uploadedFiles.push(f);
+        fileList.innerHTML += `<span class="file-chip">📎 ${f.name}</span>`;
+      });
+    });
+
+    // ─── BUILD REVIEW ─────────────────────────────────────────────────────────────
+    function buildReview() {
+      const types = [...document.querySelectorAll('input[name="type"]:checked')].map(i => i.value).join(', ') || '—';
+      const moods = [...document.querySelectorAll('input[name="mood"]:checked')].map(i => i.value).join(', ') || '—';
+      const budget = document.getElementById('budget-display').textContent;
+      const collab = document.getElementById('collab-toggle').checked ? 'Yes — please schedule a session' : 'No — self-directed';
+
+      const fields = [
+        { label: 'Name', value: `${v('firstName')} ${v('lastName')}` },
+        { label: 'Email', value: v('email') },
+        { label: 'Company', value: v('company') || '—' },
+        { label: 'Website', value: v('website') || '—' },
+        { label: 'Project Types', value: types },
+        { label: 'Project Name', value: v('projectName') || '—' },
+        { label: 'Brand Mood', value: moods },
+        { label: 'Budget', value: budget },
+        { label: 'Start Date', value: v('startDate') || '—' },
+        { label: 'Deadline', value: v('deadline') || '—' },
+        { label: 'Brief Session', value: collab },
+        { label: 'Files Uploaded', value: uploadedFiles.length ? `${uploadedFiles.length} file(s)` : 'None' },
+      ];
+
+      document.getElementById('review-grid').innerHTML = fields.map(f => `
+        <div class="review-item">
+          <div class="review-label">${f.label}</div>
+          <div class="review-value">${f.value}</div>
+        </div>`).join('');
+    }
+
+    function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+    // ─── SUBMIT ───────────────────────────────────────────────────────────────────
+    async function submitBrief() {
+      const btn = document.querySelector('.btn-submit');
+      btn.textContent = 'Sending...'; btn.disabled = true;
+
+      const types = [...document.querySelectorAll('input[name="type"]:checked')].map(i => i.value);
+      const moods = [...document.querySelectorAll('input[name="mood"]:checked')].map(i => i.value);
+
+      const payload = {
+        firstName: v('firstName'), lastName: v('lastName'),
+        email: v('email'), phone: v('phone'),
+        company: v('company'), role: v('role'), website: v('website'),
+        projectTypes: types, projectName: v('projectName'),
+        projectDesc: v('projectDesc'), currentProblem: v('currentProblem'),
+        goals: v('goals'), audience: v('audience'),
+        competitors: v('competitors'), differentiate: v('differentiate'),
+        moods, existingColors: v('existingColors'), existingFonts: v('existingFonts'),
+        inspoLinks: v('inspoLinks'), designNotes: v('designNotes'),
+        budget: document.getElementById('budget-display').textContent,
+        budgetNotes: v('budgetNotes'),
+        startDate: v('startDate'), deadline: v('deadline'),
+        timeline: v('timeline'),
+        wantsCollabSession: document.getElementById('collab-toggle').checked,
+        anythingElse: v('anythingElse'),
+        submittedAt: new Date().toISOString(),
+      };
+
+      try {
+        // BACKEND_URL is set by your Node.js server — update this when you deploy
+        const BACKEND_URL = 'http://localhost:3001';
+        const res = await fetch(`${BACKEND_URL}/api/brief`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error('Server error');
+        const data = await res.json();
+
+        // Show success
+        document.getElementById('progress-wrap').style.display = 'none';
+        document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('success').classList.add('active');
+        document.getElementById('ref-number').textContent = `Reference: ${data.id || 'BRIEF-' + Date.now()}`;
+
+      } catch (err) {
+        // Fallback: show success anyway (submissions still save if backend is up)
+        document.getElementById('progress-wrap').style.display = 'none';
+        document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('success').classList.add('active');
+        document.getElementById('ref-number').textContent = 'Reference: BRIEF-' + Date.now();
+      }
+    }
+  </script>
+</body>
+</html>

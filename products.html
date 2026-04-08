@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Gradiont</title>
+  <meta name="description" content="Shop Gradiont's physical products for Cricut crafters and WeCreate members — beautifully designed, made to create.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:         #0B1640;
+      --navy-mid:     #0F1F5C;
+      --navy-light:   #162470;
+      --navy-pale:    #EEF1FB;
+      --white:        #FFFFFF;
+      --off-white:    #F5F7FF;
+      --ink:          #0B1640;
+      --muted:        #6B7AA1;
+      --blue:         #1E7BFF;
+      --blue-light:   #63AAFF;
+      --blue-pale:    #E0EDFF;
+      --pink:         #FF2D78;
+      --pink-light:   #FF6FA3;
+      --pink-pale:    #FFE5EF;
+      --border:       rgba(11,22,64,0.1);
+      --border-light: rgba(255,255,255,0.12);
+      --shadow-sm:    0 2px 12px rgba(11,22,64,0.08);
+      --shadow-md:    0 8px 40px rgba(11,22,64,0.12);
+      --shadow-lg:    0 24px 80px rgba(11,22,64,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(110deg, #0B1640 0%, #0d2a6e 45%, #1E7BFF 100%);
+      border-bottom: 1px solid rgba(30,123,255,0.25);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 90px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.875rem; font-weight: 400; color: rgba(255,255,255,0.65); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: white; }
+    .nav-cta { background: var(--pink) !important; color: white !important; padding: 9px 24px; border-radius: 100px; font-weight: 500 !important; box-shadow: 0 4px 16px rgba(255,45,120,0.35); }
+    .nav-cta:hover { background: #e0175f !important; }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: var(--navy); padding: 160px 80px 80px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .page-hero-bg-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none;
+    }
+    .page-hero-glow { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+    .glow-blue { width:400px;height:400px;background:rgba(30,123,255,0.15);top:-80px;right:5%; }
+    .glow-pink { width:320px;height:320px;background:rgba(255,45,120,0.1);bottom:-60px;left:10%; }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 300; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 20px; }
+    .page-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--blue-light); }
+    .page-h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 800; color: white; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+    .page-h1 .pink { color: var(--pink); font-style: italic; }
+    .page-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 520px; margin: 0 auto; font-weight: 300; }
+
+    /* TABS */
+    .shop-tabs {
+      background: white; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center; gap: 0;
+      position: sticky; top: 64px; z-index: 50;
+    }
+    .tab-btn {
+      padding: 18px 40px; border: none; background: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+      color: var(--muted); border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--ink); }
+    .tab-btn.active { color: var(--pink); border-bottom-color: var(--pink); }
+
+    /* SHOP SECTION */
+    .shop-section { padding: 80px; display: none; }
+    .shop-section.visible { display: block; }
+    .shop-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .section-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--muted); }
+    .section-h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto; font-weight: 300; }
+
+    /* PRODUCT GRID */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
+
+    .product-card {
+      background: white; border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .product-img {
+      width: 100%; aspect-ratio: 4/3; background: var(--navy-pale);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .product-img.cricut-bg { background: linear-gradient(135deg, #EEF1FB 0%, #E0EDFF 100%); }
+    .product-img.wecreate-bg { background: linear-gradient(135deg, #FFE5EF 0%, #F5F7FF 100%); }
+    .product-img-placeholder {
+      font-size: 3.5rem; opacity: 0.6;
+    }
+    .product-img .coming-soon-badge {
+      position: absolute; bottom: 12px; right: 12px;
+      background: rgba(11,22,64,0.7); color: white;
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px; backdrop-filter: blur(8px);
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-body { padding: 24px; }
+    .product-category { font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .product-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.3; }
+    .product-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .product-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+    .product-price .cents { font-size: 0.85rem; font-weight: 400; }
+
+    .btn-buy {
+      background: var(--navy); color: white; border: none; cursor: pointer;
+      padding: 10px 22px; border-radius: 100px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.83rem; font-weight: 500; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-buy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+    .btn-buy.pink { background: var(--pink); }
+    .btn-buy.pink:hover { background: #e0175f; }
+
+    /* COMING SOON CARD */
+    .product-card.coming-soon .btn-buy { background: var(--muted); cursor: default; }
+    .product-card.coming-soon .btn-buy:hover { transform: none; background: var(--muted); }
+
+    /* BRAND STRIP */
+    .brand-strip {
+      background: var(--navy); padding: 56px 80px;
+      display: flex; align-items: center; justify-content: center; gap: 80px;
+      flex-wrap: wrap;
+    }
+    .brand-item { text-align: center; }
+    .brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 6px; }
+    .brand-name span { color: var(--pink); }
+    .brand-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.45); font-weight: 300; letter-spacing: 0.04em; }
+    .brand-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.12); }
+
+    /* CUSTOM ORDER BANNER */
+    .custom-banner {
+      background: linear-gradient(135deg, var(--pink) 0%, #c41058 100%);
+      padding: 56px 80px; text-align: center;
+    }
+    .custom-banner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: white; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .custom-banner p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 28px; font-weight: 300; }
+    .btn-white { background: white; color: var(--pink); padding: 14px 36px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy); padding: 40px 80px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      border-top: 1px solid var(--border-light);
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: white; }
+    .footer-logo span { color: var(--pink); }
+    .footer-links { display: flex; gap: 28px; list-style: none; }
+    .footer-links a { font-size: 0.83rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .page-hero { padding: 120px 24px 60px; }
+      .shop-section { padding: 48px 24px; }
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .brand-strip { padding: 40px 24px; gap: 40px; }
+      .custom-banner { padding: 40px 24px; }
+      footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .tab-btn { padding: 14px 20px; font-size: 0.82rem; }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo"><img src="Logo/gradiont-logo-transparent.png" alt="Gradiont"></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="products.html" class="active">Shop</a></li>
+      <li><a href="creative-brief.html">Creative Brief</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Let's Talk</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg-grid"></div>
+    <div class="page-hero-glow glow-blue"></div>
+    <div class="page-hero-glow glow-pink"></div>
+    <div class="page-hero-content">
+      <div class="page-eyebrow">The Shop</div>
+      <h1 class="page-h1">Products made to<br><span class="pink">inspire & create.</span></h1>
+      <p class="page-sub">Physical products for Cricut crafters and the WeCreate community — designed with the same care we put into everything at Gradiont.</p>
+    </div>
+  </div>
+
+  <!-- BRAND STRIP -->
+  <div class="brand-strip">
+    <div class="brand-item">
+      <div class="brand-name">Cricut<span>.</span></div>
+      <div class="brand-tagline">Craft supplies & accessories</div>
+    </div>
+    <div class="brand-divider"></div>
+    <div class="brand-item">
+      <div class="brand-name">We<span>Create</span></div>
+      <div class="brand-tagline">Community & maker goods</div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="shop-tabs">
+    <button class="tab-btn active" data-tab="all">All Products</button>
+    <button class="tab-btn" data-tab="cricut">Cricut</button>
+    <button class="tab-btn" data-tab="wecreate">WeCreate</button>
+  </div>
+
+  <!-- ALL / CRICUT -->
+  <section class="shop-section visible" id="tab-all">
+    <div class="shop-header reveal">
+      <div class="section-eyebrow">Everything</div>
+      <h2 class="section-h2">All Products</h2>
+      <p class="section-sub">Browse the full collection across both brands.</p>
+    </div>
+    <div class="product-grid" id="all-grid">
+      <!-- Populated by JS from both collections -->
+    </div>
+  </section>
+
+  <section class="shop-section" id="tab-cricut">
+    <div class="shop-header reveal">
+      <div class="section-eyebrow">For Cricut Crafters</div>
+      <h2 class="section-h2">Cricut Collection</h2>
+      <p class="section-sub">Everything you need to take your Cricut craft to the next level.</p>
+    </div>
+    <div class="product-grid" id="cricut-grid"></div>
+  </section>
+
+  <section class="shop-section" id="tab-wecreate">
+    <div class="shop-header reveal">
+      <div class="section-eyebrow">For the Community</div>
+      <h2 class="section-h2">WeCreate Collection</h2>
+      <p class="section-sub">Maker goods and community essentials, designed to inspire.</p>
+    </div>
+    <div class="product-grid" id="wecreate-grid"></div>
+  </section>
+
+  <!-- CUSTOM ORDER BANNER -->
+  <div class="custom-banner">
+    <h2>Need something custom?</h2>
+    <p>Have a specific project in mind? Start a creative brief and let's build it together.</p>
+    <a href="creative-brief.html" class="btn-white">Start Your Creative Brief →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Gra<span>dion</span>t</div>
+    <ul class="footer-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="creative-brief.html">Creative Brief</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© <span id="year"></span> Gradiont · Julie Dion. All rights reserved.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+    // ─── PRODUCT DATA ────────────────────────────────────────────────────────────
+    // Add your products here. Set stripePaymentLink to your Stripe Payment Link URL.
+    // Set comingSoon: true while you're still adding photos/stock.
+    const products = [
+      // CRICUT
+      {
+        id: 'cricut-001',
+        brand: 'cricut',
+        category: 'Cricut · Materials',
+        name: 'Premium Vinyl Bundle',
+        desc: 'A curated set of permanent adhesive vinyl in trending colors — perfect for mugs, tumblers, and home décor projects.',
+        price: 24.99,
+        emoji: '🎨',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+      {
+        id: 'cricut-002',
+        brand: 'cricut',
+        category: 'Cricut · Tools',
+        name: 'Weeding Tool Set',
+        desc: 'Professional-grade weeding tools designed for precision. Includes hook, tweezers, and spatula in a travel case.',
+        price: 18.00,
+        emoji: '✂️',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+      {
+        id: 'cricut-003',
+        brand: 'cricut',
+        category: 'Cricut · Accessories',
+        name: 'Transfer Tape Roll',
+        desc: 'Medium-tack transfer tape that works perfectly with permanent and removable vinyl — no bubbles, no mess.',
+        price: 12.50,
+        emoji: '📦',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+      {
+        id: 'cricut-004',
+        brand: 'cricut',
+        category: 'Cricut · Kits',
+        name: 'Beginner Starter Kit',
+        desc: 'Everything a new Cricut owner needs in one box — vinyl, transfer tape, weeding tools, and a getting-started guide.',
+        price: 49.99,
+        emoji: '🌟',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+      // WECREATE
+      {
+        id: 'wc-001',
+        brand: 'wecreate',
+        category: 'WeCreate · Apparel',
+        name: 'WeCreate Maker Tee',
+        desc: 'Soft, fitted crew-neck tee with the WeCreate wordmark. 100% combed cotton. For the maker in all of us.',
+        price: 32.00,
+        emoji: '👕',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+      {
+        id: 'wc-002',
+        brand: 'wecreate',
+        category: 'WeCreate · Stationery',
+        name: 'Creator\'s Notebook',
+        desc: 'Dot-grid notebook with 200 pages, lay-flat binding, and a pocket for stickers. Designed for sketching, planning, and making.',
+        price: 22.00,
+        emoji: '📓',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+      {
+        id: 'wc-003',
+        brand: 'wecreate',
+        category: 'WeCreate · Accessories',
+        name: 'Maker Enamel Pin Set',
+        desc: 'Three hard enamel pins celebrating the maker lifestyle — scissors, paintbrush, and lightning bolt. Gold plated.',
+        price: 16.00,
+        emoji: '📌',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+      {
+        id: 'wc-004',
+        brand: 'wecreate',
+        category: 'WeCreate · Home',
+        name: 'Studio Sticker Sheet',
+        desc: 'A full sheet of 30 vinyl stickers — perfect for your laptop, water bottle, or craft room. Waterproof & UV-resistant.',
+        price: 8.00,
+        emoji: '✨',
+        stripePaymentLink: '',
+        comingSoon: true,
+      },
+    ];
+
+    // ─── RENDER ──────────────────────────────────────────────────────────────────
+    function buildCard(p) {
+      const imgClass = p.brand === 'cricut' ? 'cricut-bg' : 'wecreate-bg';
+      const btnClass = p.brand === 'wecreate' ? 'pink' : '';
+      const dollars = Math.floor(p.price);
+      const cents = String(p.price.toFixed(2)).split('.')[1];
+
+      let btnHTML;
+      if (p.comingSoon || !p.stripePaymentLink) {
+        btnHTML = `<button class="btn-buy" disabled style="background:var(--muted);cursor:default;">Coming Soon</button>`;
+      } else {
+        btnHTML = `<a href="${p.stripePaymentLink}" target="_blank" rel="noopener" class="btn-buy ${btnClass}">Buy Now →</a>`;
+      }
+
+      return `
+        <div class="product-card${p.comingSoon ? ' coming-soon' : ''}" data-brand="${p.brand}">
+          <div class="product-img ${imgClass}">
+            <div class="product-img-placeholder">${p.emoji}</div>
+            ${p.comingSoon ? '<span class="coming-soon-badge">Coming Soon</span>' : ''}
+          </div>
+          <div class="product-body">
+            <div class="product-category">${p.category}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-desc">${p.desc}</div>
+            <div class="product-footer">
+              <div class="product-price">$${dollars}<span class="cents">.${cents}</span></div>
+              ${btnHTML}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    const allGrid = document.getElementById('all-grid');
+    const cricutGrid = document.getElementById('cricut-grid');
+    const wecreateGrid = document.getElementById('wecreate-grid');
+
+    products.forEach(p => {
+      allGrid.innerHTML += buildCard(p);
+      if (p.brand === 'cricut') cricutGrid.innerHTML += buildCard(p);
+      if (p.brand === 'wecreate') wecreateGrid.innerHTML += buildCard(p);
+    });
+
+    // ─── TABS ────────────────────────────────────────────────────────────────────
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.shop-section').forEach(s => s.classList.remove('visible'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('visible');
+      });
+    });
+
+    // ─── REVEAL ──────────────────────────────────────────────────────────────────
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
