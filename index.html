@@ -455,150 +455,152 @@
     .footer-links a { font-size:0.82rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s; }
     .footer-links a:hover { color:var(--blue-light); }
 
-    /* HERO REEL */
-    .reel-wrap {
-      position: relative; z-index: 2;
-      width: 360px;
-      animation: fadeIn 1s 0.2s ease both;
-    }
-    .reel-frame {
-      width: 100%;
-      background: rgba(15,25,70,0.7);
-      backdrop-filter: blur(24px);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 20px;
+    /* SCATTERED SHOWCASE */
+    .sc-card {
+      position: absolute;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 28px 80px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.11);
+      cursor: default;
+      transition: box-shadow 0.35s ease, filter 0.35s ease;
     }
-    .reel-chrome {
-      background: rgba(255,255,255,0.06);
-      padding: 10px 14px;
-      display: flex; align-items: center; gap: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .reel-chrome-dots { display:flex; gap:5px; flex-shrink:0; }
-    .reel-chrome-dots span { width:9px; height:9px; border-radius:50%; }
-    .reel-chrome-dots span:nth-child(1) { background:#FF5F57; }
-    .reel-chrome-dots span:nth-child(2) { background:#FEBC2E; }
-    .reel-chrome-dots span:nth-child(3) { background:#28C840; }
-    .reel-urlbar {
-      flex:1; height:20px; border-radius:6px;
-      background:rgba(255,255,255,0.07);
-      font-family:'DM Mono',monospace; font-size:0.6rem;
-      color:rgba(255,255,255,0.3); letter-spacing:0.06em;
-      display:flex; align-items:center; padding:0 10px;
-    }
-    .reel-viewport {
-      position:relative; height:240px; overflow:hidden;
-    }
-    .reel-slide {
-      position:absolute; inset:0;
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:center;
-      padding:20px 24px;
-      opacity:0; transform:translateX(40px);
-      transition:opacity 0.55s ease, transform 0.55s ease;
-      pointer-events:none;
-    }
-    .reel-slide.is-active {
-      opacity:1; transform:translateX(0);
-      pointer-events:auto;
-    }
-    .reel-slide.is-exit {
-      opacity:0; transform:translateX(-40px);
-    }
-    .rs-web   { background:linear-gradient(145deg,#0B3D8C 0%,#061030 100%); }
-    .rs-merch { background:linear-gradient(145deg,#7A0035 0%,#061030 100%); }
-    .rs-print { background:linear-gradient(145deg,#3B0B62 0%,#061030 100%); }
-    .rs-photo { background:linear-gradient(145deg,#1a3a2a 0%,#061030 100%); }
+    .sc-card:hover { filter: brightness(1.09); box-shadow: 0 36px 88px rgba(0,0,0,0.55) !important; }
 
-    /* Slide: Website mockup */
-    .rs-web-mock { width:100%; background:rgba(255,255,255,0.06); border-radius:10px; padding:14px; margin-bottom:10px; }
-    .rs-web-nav { height:8px; background:rgba(30,123,255,0.45); border-radius:4px; margin-bottom:10px; }
-    .rs-web-hero { height:62px; background:linear-gradient(110deg,rgba(30,123,255,0.35),rgba(255,45,120,0.25)); border-radius:7px; margin-bottom:8px; position:relative; overflow:hidden; }
-    .rs-web-hero::after { content:''; position:absolute; bottom:8px; left:10px; right:50%; height:6px; background:rgba(255,255,255,0.25); border-radius:3px; }
-    .rs-web-lines { display:flex; flex-direction:column; gap:5px; }
-    .rs-web-line { height:5px; background:rgba(255,255,255,0.15); border-radius:3px; }
-    .rs-web-line.short { width:60%; }
-
-    /* Slide: Merch */
-    .rs-tshirt-wrap { margin-bottom:10px; }
-    .rs-tshirt-shape {
-      width:110px; height:95px;
-      background:linear-gradient(135deg,#FF2D78,#FF6FA3);
-      clip-path:polygon(20% 0%,80% 0%,95% 15%,100% 15%,100% 100%,0% 100%,0% 15%,5% 15%);
-      display:flex; align-items:center; justify-content:center;
-      box-shadow:0 8px 24px rgba(255,45,120,0.4);
+    .sc-web {
+      width: 262px; padding: 22px;
+      top: 50%; left: 50%;
+      transform: translate(-56%, -52%) rotate(-4deg);
+      background: linear-gradient(145deg, #103A8F 0%, #080F2B 100%);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      z-index: 3;
+      animation: floatCard 7s ease-in-out infinite;
     }
-    .rs-tshirt-logo {
-      font-family:'Playfair Display',serif;
-      font-size:0.7rem; font-weight:800; color:white;
-      letter-spacing:0.1em; text-align:center; line-height:1.3;
+    .sc-merch {
+      width: 206px; padding: 20px;
+      top: 7%; right: 3%;
+      transform: rotate(5deg);
+      background: linear-gradient(145deg, #C00E4A 0%, #280013 100%);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+      z-index: 2;
+      animation: floatCard 9s ease-in-out infinite reverse;
+    }
+    .sc-print {
+      width: 194px; padding: 18px;
+      bottom: 12%; left: 2%;
+      transform: rotate(-5deg);
+      background: linear-gradient(145deg, #4A1E9E 0%, #0C0726 100%);
+      box-shadow: 0 16px 46px rgba(0,0,0,0.45);
+      z-index: 2;
+      animation: floatCard 8s ease-in-out infinite 1.5s;
+    }
+    .sc-digital {
+      width: 180px; padding: 18px;
+      bottom: 9%; right: 5%;
+      transform: rotate(4deg);
+      background: linear-gradient(145deg, #0A5A3E 0%, #050D1C 100%);
+      box-shadow: 0 14px 42px rgba(0,0,0,0.45);
+      z-index: 2;
+      animation: floatCard 10s ease-in-out infinite reverse 0.8s;
     }
 
-    /* Slide: Print */
-    .rs-poster-wrap {
-      width:100%; max-width:200px;
-      background:rgba(255,255,255,0.07);
-      border-radius:8px; padding:12px;
-      margin-bottom:10px;
-      border:1px solid rgba(255,255,255,0.1);
-    }
-    .rs-poster-title { height:14px; background:var(--pink); border-radius:3px; margin-bottom:8px; width:70%; }
-    .rs-poster-sub { height:7px; background:rgba(255,255,255,0.25); border-radius:3px; margin-bottom:8px; }
-    .rs-poster-img { height:55px; background:linear-gradient(135deg,rgba(123,47,190,0.5),rgba(30,123,255,0.3)); border-radius:5px; margin-bottom:8px; }
-    .rs-poster-lines { display:flex; flex-direction:column; gap:4px; }
-    .rs-poster-line { height:4px; background:rgba(255,255,255,0.15); border-radius:2px; }
-
-    /* Slide: Photo */
-    .rs-photo-wrap {
-      width:100%; max-width:240px; height:110px;
-      border-radius:10px; overflow:hidden;
-      position:relative; margin-bottom:6px;
-      border:1px solid rgba(255,255,255,0.15);
-      display:flex;
-    }
-    .rs-before { flex:1; background:linear-gradient(135deg,#4a4a4a,#888); position:relative; }
-    .rs-before::after { content:'BEFORE'; position:absolute; bottom:6px; left:6px; font-family:'DM Mono',monospace; font-size:0.45rem; letter-spacing:0.1em; color:rgba(255,255,255,0.45); }
-    .rs-divider-line { width:2px; background:white; flex-shrink:0; box-shadow:0 0 8px rgba(255,255,255,0.6); }
-    .rs-after { flex:1; background:linear-gradient(135deg,#2a6a4a,#28c86a); position:relative; filter:saturate(1.4); }
-    .rs-after::after { content:'AFTER'; position:absolute; bottom:6px; right:6px; font-family:'DM Mono',monospace; font-size:0.45rem; letter-spacing:0.1em; color:rgba(255,255,255,0.6); }
-
-    .reel-slide-label {
-      font-family:'DM Mono',monospace; font-size:0.62rem;
+    .sc-eyebrow {
+      font-family:'DM Mono',monospace; font-size:0.57rem;
       letter-spacing:0.14em; text-transform:uppercase;
-      color:rgba(255,255,255,0.45);
+      color:rgba(255,255,255,0.38); margin-bottom:12px;
+    }
+    .sc-title {
+      font-family:'Playfair Display',serif;
+      font-size:1.32rem; font-weight:700; color:white;
+      line-height:1.15; margin-bottom:14px;
+    }
+    .sc-title-sm {
+      font-family:'Playfair Display',serif;
+      font-size:0.98rem; font-weight:700; color:white;
+      line-height:1.2; margin-bottom:4px;
+    }
+    .sc-detail { font-size:0.67rem; color:rgba(255,255,255,0.38); margin-top:3px; }
+
+    /* Browser mockup */
+    .sc-browser { background:rgba(255,255,255,0.07); border-radius:9px; overflow:hidden; margin-bottom:13px; }
+    .sc-b-bar { background:rgba(255,255,255,0.06); padding:7px 10px; display:flex; align-items:center; gap:7px; }
+    .sc-b-dots { display:flex; gap:4px; }
+    .sc-b-dots span { width:7px; height:7px; border-radius:50%; }
+    .sc-b-dots span:nth-child(1) { background:#FF5F57; }
+    .sc-b-dots span:nth-child(2) { background:#FEBC2E; }
+    .sc-b-dots span:nth-child(3) { background:#28C840; }
+    .sc-b-url { flex:1; height:15px; background:rgba(255,255,255,0.07); border-radius:4px; }
+    .sc-b-body { padding:10px; }
+    .sc-b-hero {
+      height:72px;
+      background:linear-gradient(110deg,rgba(30,123,255,0.42),rgba(255,45,120,0.3));
+      border-radius:6px; margin-bottom:8px; position:relative; overflow:hidden;
+    }
+    .sc-b-hero::before { content:''; position:absolute; top:14px; left:10px; right:44%; height:8px; background:rgba(255,255,255,0.32); border-radius:4px; }
+    .sc-b-hero::after  { content:''; position:absolute; top:30px; left:10px; right:60%; height:6px; background:rgba(255,255,255,0.18); border-radius:3px; }
+    .sc-b-lines { display:flex; flex-direction:column; gap:5px; }
+    .sc-b-line { height:5px; background:rgba(255,255,255,0.13); border-radius:3px; }
+    .sc-b-line.s { width:62%; }
+
+    /* Big stat (web card top-right) */
+    .sc-big-stat { position:absolute; top:18px; right:18px; text-align:right; }
+    .sc-big-n { font-family:'Playfair Display',serif; font-size:2rem; font-weight:800; color:white; line-height:1; }
+    .sc-big-l { font-size:0.54rem; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.1em; }
+
+    /* Service pills */
+    .sc-pill-row { display:flex; gap:6px; flex-wrap:wrap; }
+    .sc-pill { font-size:0.61rem; color:var(--blue-light); background:rgba(30,123,255,0.18); border-radius:6px; padding:3px 9px; }
+
+    /* T-shirt */
+    .sc-tshirt-wrap { display:flex; justify-content:center; margin-bottom:12px; }
+    .sc-tshirt {
+      width:118px; height:103px;
+      background:linear-gradient(145deg,#FF2D78,#FF6FA3);
+      clip-path:polygon(20% 0%,80% 0%,96% 14%,100% 14%,100% 100%,0% 100%,0% 14%,4% 14%);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 10px 28px rgba(255,45,120,0.45);
+    }
+    .sc-tshirt-txt {
+      font-family:'Playfair Display',serif;
+      font-size:0.62rem; font-weight:800; color:white;
+      letter-spacing:0.12em; text-align:center; line-height:1.4;
     }
 
-    /* Reel progress dots */
-    .reel-progress {
-      display:flex; justify-content:center; align-items:center;
-      gap:6px; padding:10px 0; height:34px;
-      background:rgba(0,0,0,0.2);
-      border-top:1px solid rgba(255,255,255,0.06);
-    }
-    .reel-dot {
-      width:6px; height:6px; border-radius:50%;
-      background:rgba(255,255,255,0.2);
-      transition:all 0.35s ease; cursor:pointer;
-    }
-    .reel-dot.is-active { background:var(--pink); width:18px; border-radius:3px; }
+    /* Mini poster */
+    .sc-poster { margin-bottom:12px; }
+    .sc-p-head { height:12px; background:var(--pink); border-radius:3px; margin-bottom:7px; width:72%; }
+    .sc-p-sub  { height:6px; background:rgba(255,255,255,0.22); border-radius:3px; margin-bottom:9px; }
+    .sc-p-img  { height:58px; background:linear-gradient(135deg,rgba(120,47,190,0.6),rgba(30,123,255,0.35)); border-radius:6px; margin-bottom:8px; position:relative; overflow:hidden; }
+    .sc-p-img::after { content:''; position:absolute; bottom:8px; left:8px; right:32%; height:5px; background:rgba(255,255,255,0.2); border-radius:2px; }
+    .sc-p-lines { display:flex; flex-direction:column; gap:4px; }
+    .sc-p-line { height:4px; background:rgba(255,255,255,0.14); border-radius:2px; }
+    .sc-p-line.s { width:68%; }
 
-    /* Floating badges around reel */
-    .reel-badge {
+    /* Icon pills */
+    .sc-icon-row { display:flex; gap:7px; margin-bottom:12px; }
+    .sc-icon-pill {
+      width:40px; height:40px; border-radius:11px;
+      background:rgba(255,255,255,0.09);
+      border:1px solid rgba(255,255,255,0.11);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.05rem;
+    }
+
+    /* Floating achievement badges */
+    .sc-badge {
       position:absolute;
-      background:rgba(15,25,70,0.75);
-      backdrop-filter:blur(16px);
-      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(8,15,43,0.82);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.15);
       border-radius:100px;
-      padding:8px 18px;
-      font-size:0.72rem; font-weight:500;
-      color:rgba(255,255,255,0.85); white-space:nowrap;
-      box-shadow:0 8px 24px rgba(0,0,0,0.3);
+      padding:9px 20px;
+      font-size:0.74rem; font-weight:500;
+      color:rgba(255,255,255,0.88); white-space:nowrap;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+      z-index:4;
     }
-    .rb-1 { top:-18px; right:10px; animation:floatCard 5s ease-in-out infinite; }
-    .rb-2 { bottom:50px; left:-48px; animation:floatCard 7s ease-in-out infinite reverse; }
-    .rb-3 { bottom:-16px; right:16px; animation:floatCard 6s ease-in-out infinite 1.2s; }
+    .sb-1 { top:3%;  left:3%;   animation:floatCard 6s ease-in-out infinite; }
+    .sb-2 { top:44%; right:1%;  animation:floatCard 8s ease-in-out infinite reverse; }
+    .sb-3 { bottom:3%; left:28%; animation:floatCard 7s ease-in-out infinite 1s; }
 
     /* CYCLING H1 */
     .hero-cycle {
@@ -684,78 +686,77 @@
       <div class="hero-blob blob-blue"></div>
       <div class="hero-blob blob-pink"></div>
 
-      <div class="reel-wrap">
-
-        <div class="reel-frame">
-          <div class="reel-chrome">
-            <div class="reel-chrome-dots"><span></span><span></span><span></span></div>
-            <div class="reel-urlbar">gradiont.com</div>
+      <!-- Web design card (main, center) -->
+      <div class="sc-card sc-web">
+        <div class="sc-big-stat">
+          <div class="sc-big-n">15+</div>
+          <div class="sc-big-l">Years</div>
+        </div>
+        <div class="sc-eyebrow">Web Design</div>
+        <div class="sc-title">Custom<br>Websites</div>
+        <div class="sc-browser">
+          <div class="sc-b-bar">
+            <div class="sc-b-dots"><span></span><span></span><span></span></div>
+            <div class="sc-b-url"></div>
           </div>
-
-          <div class="reel-viewport">
-
-            <!-- Slide 1: Custom Websites -->
-            <div class="reel-slide rs-web is-active">
-              <div class="rs-web-mock">
-                <div class="rs-web-nav"></div>
-                <div class="rs-web-hero"></div>
-                <div class="rs-web-lines">
-                  <div class="rs-web-line"></div>
-                  <div class="rs-web-line short"></div>
-                </div>
-              </div>
-              <div class="reel-slide-label">Custom Websites</div>
+          <div class="sc-b-body">
+            <div class="sc-b-hero"></div>
+            <div class="sc-b-lines">
+              <div class="sc-b-line"></div>
+              <div class="sc-b-line s"></div>
             </div>
-
-            <!-- Slide 2: Merch & T-Shirts -->
-            <div class="reel-slide rs-merch">
-              <div class="rs-tshirt-wrap">
-                <div class="rs-tshirt-shape">
-                  <div class="rs-tshirt-logo">GRA<span style="color:#FFB3CC">DION</span>T</div>
-                </div>
-              </div>
-              <div class="reel-slide-label">Merch &amp; T-Shirts</div>
-            </div>
-
-            <!-- Slide 3: Print & Signage -->
-            <div class="reel-slide rs-print">
-              <div class="rs-poster-wrap">
-                <div class="rs-poster-title"></div>
-                <div class="rs-poster-sub"></div>
-                <div class="rs-poster-img"></div>
-                <div class="rs-poster-lines">
-                  <div class="rs-poster-line"></div>
-                  <div class="rs-poster-line"></div>
-                </div>
-              </div>
-              <div class="reel-slide-label">Flyers &amp; Print Design</div>
-            </div>
-
-            <!-- Slide 4: Photo Retouching -->
-            <div class="reel-slide rs-photo">
-              <div class="rs-photo-wrap">
-                <div class="rs-before"></div>
-                <div class="rs-divider-line"></div>
-                <div class="rs-after"></div>
-              </div>
-              <div class="reel-slide-label">Photo Retouching</div>
-            </div>
-
-          </div>
-
-          <div class="reel-progress">
-            <span class="reel-dot is-active"></span>
-            <span class="reel-dot"></span>
-            <span class="reel-dot"></span>
-            <span class="reel-dot"></span>
           </div>
         </div>
-
-        <div class="reel-badge rb-1">✦ Delivered on time</div>
-        <div class="reel-badge rb-2">★ 15+ years exp.</div>
-        <div class="reel-badge rb-3">↗ Ready to launch</div>
-
+        <div class="sc-pill-row">
+          <span class="sc-pill">Landing Pages</span>
+          <span class="sc-pill">E-Commerce</span>
+        </div>
       </div>
+
+      <!-- Merch card (top right) -->
+      <div class="sc-card sc-merch">
+        <div class="sc-eyebrow">Handmade</div>
+        <div class="sc-tshirt-wrap">
+          <div class="sc-tshirt">
+            <div class="sc-tshirt-txt">GRA<span style="color:#FFB3CC">DION</span>T</div>
+          </div>
+        </div>
+        <div class="sc-title-sm">Merch &amp; Gifts</div>
+        <div class="sc-detail">Mugs · Tees · Promos</div>
+      </div>
+
+      <!-- Print card (bottom left) -->
+      <div class="sc-card sc-print">
+        <div class="sc-eyebrow">Graphics &amp; Print</div>
+        <div class="sc-poster">
+          <div class="sc-p-head"></div>
+          <div class="sc-p-sub"></div>
+          <div class="sc-p-img"></div>
+          <div class="sc-p-lines">
+            <div class="sc-p-line"></div>
+            <div class="sc-p-line s"></div>
+          </div>
+        </div>
+        <div class="sc-title-sm">Print &amp; Signage</div>
+      </div>
+
+      <!-- Digital card (bottom right) -->
+      <div class="sc-card sc-digital">
+        <div class="sc-eyebrow">Digital Services</div>
+        <div class="sc-icon-row">
+          <div class="sc-icon-pill">📧</div>
+          <div class="sc-icon-pill">📱</div>
+          <div class="sc-icon-pill">🛒</div>
+        </div>
+        <div class="sc-title-sm">Digital &amp; Online</div>
+        <div class="sc-detail">Email · Social · Shopify</div>
+      </div>
+
+      <!-- Floating achievement badges -->
+      <div class="sc-badge sb-1">★ 15+ Years Experience</div>
+      <div class="sc-badge sb-2">✦ Delivered on time</div>
+      <div class="sc-badge sb-3">↗ Remote · Contract</div>
+
     </div>
   </section>
 
@@ -1066,21 +1067,6 @@
     }
     setInterval(nextWord, 2600);
 
-    // Hero reel cycling
-    const reelSlides = document.querySelectorAll('.reel-slide');
-    const reelDots = document.querySelectorAll('.reel-dot');
-    let reelIdx = 0;
-    function nextSlide() {
-      reelSlides[reelIdx].classList.remove('is-active');
-      reelSlides[reelIdx].classList.add('is-exit');
-      reelDots[reelIdx].classList.remove('is-active');
-      const prev = reelIdx;
-      reelIdx = (reelIdx + 1) % reelSlides.length;
-      reelSlides[reelIdx].classList.add('is-active');
-      reelDots[reelIdx].classList.add('is-active');
-      setTimeout(() => reelSlides[prev].classList.remove('is-exit'), 600);
-    }
-    setInterval(nextSlide, 3200);
   </script>
 </body>
 </html>
