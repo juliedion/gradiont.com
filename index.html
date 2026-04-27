@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gradiont — Design Engineering & Digital Products</title>
-  <meta name="description" content="Gradiont is Julie Dion's design engineering studio — building beautiful, functional digital products and offering senior UX consulting for remote contract engagements.">
+  <meta name="description" content="Gradiont is a boutique design studio specializing in custom websites, graphics, and digital products — built from scratch and delivered ready to launch.">
   <link rel="icon" type="image/jxl" href="Logo/gradiont-favicon.jxl">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,7 +210,7 @@
       border-top: 1px solid rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .marquee-track { display: inline-flex; animation: marquee 30s linear infinite; }
+    .marquee-track { display: inline-flex; animation: marquee 60s linear infinite; }
     .marquee-item {
       display: inline-flex; align-items: center; gap: 22px; padding: 0 32px;
       font-family: 'DM Mono', monospace; font-size: 0.68rem;
@@ -331,6 +331,15 @@
     .work-pill.pink { background:var(--pink-pale);color:var(--pink); }
     .work-pill.navy { background:var(--navy-pale);color:var(--navy-mid); }
 
+    .brand-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 800; color: white;
+      text-align: center; letter-spacing: -0.02em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3); line-height: 1.2;
+      padding: 0 20px;
+    }
+    .work-card--flagship .brand-wordmark { font-size: 2.4rem; }
+
     /* ABOUT */
     #about { background: var(--navy); color: white; }
 
@@ -372,7 +381,8 @@
 
     .about-right { position: relative; }
     .about-img-wrap {
-      border-radius:24px;overflow:hidden;aspect-ratio:3/4;
+      border-radius:24px;overflow:hidden;aspect-ratio:4/5;
+      max-width:300px; margin:0 auto;
       background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));
       display:flex;align-items:center;justify-content:center;font-size:5rem;
       box-shadow:var(--shadow-lg);position:relative;border:1px solid rgba(255,255,255,0.08);
@@ -437,12 +447,164 @@
       display:flex;justify-content:space-between;align-items:center;
       flex-wrap:wrap;gap:24px;border-top:1px solid rgba(255,255,255,0.06);
     }
-    .footer-logo { font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:white;letter-spacing:-0.02em; }
-    .footer-logo span { color:var(--pink-light); }
+    .footer-logo { font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:white;letter-spacing:0.08em;text-transform:uppercase; }
+    .brand-dion { color:var(--pink); font-style:normal; }
+    .brand-name { font-weight:700; letter-spacing:0.04em; }
     .footer-copy { font-size:0.78rem;color:rgba(255,255,255,0.3); }
     .footer-links { display:flex;gap:28px;list-style:none; }
     .footer-links a { font-size:0.82rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s; }
     .footer-links a:hover { color:var(--blue-light); }
+
+    /* HERO REEL */
+    .reel-wrap {
+      position: relative; z-index: 2;
+      width: 360px;
+      animation: fadeIn 1s 0.2s ease both;
+    }
+    .reel-frame {
+      width: 100%;
+      background: rgba(15,25,70,0.7);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.45);
+    }
+    .reel-chrome {
+      background: rgba(255,255,255,0.06);
+      padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .reel-chrome-dots { display:flex; gap:5px; flex-shrink:0; }
+    .reel-chrome-dots span { width:9px; height:9px; border-radius:50%; }
+    .reel-chrome-dots span:nth-child(1) { background:#FF5F57; }
+    .reel-chrome-dots span:nth-child(2) { background:#FEBC2E; }
+    .reel-chrome-dots span:nth-child(3) { background:#28C840; }
+    .reel-urlbar {
+      flex:1; height:20px; border-radius:6px;
+      background:rgba(255,255,255,0.07);
+      font-family:'DM Mono',monospace; font-size:0.6rem;
+      color:rgba(255,255,255,0.3); letter-spacing:0.06em;
+      display:flex; align-items:center; padding:0 10px;
+    }
+    .reel-viewport {
+      position:relative; height:240px; overflow:hidden;
+    }
+    .reel-slide {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:20px 24px;
+      opacity:0; transform:translateX(40px);
+      transition:opacity 0.55s ease, transform 0.55s ease;
+      pointer-events:none;
+    }
+    .reel-slide.is-active {
+      opacity:1; transform:translateX(0);
+      pointer-events:auto;
+    }
+    .reel-slide.is-exit {
+      opacity:0; transform:translateX(-40px);
+    }
+    .rs-web   { background:linear-gradient(145deg,#0B3D8C 0%,#061030 100%); }
+    .rs-merch { background:linear-gradient(145deg,#7A0035 0%,#061030 100%); }
+    .rs-print { background:linear-gradient(145deg,#3B0B62 0%,#061030 100%); }
+    .rs-photo { background:linear-gradient(145deg,#1a3a2a 0%,#061030 100%); }
+
+    /* Slide: Website mockup */
+    .rs-web-mock { width:100%; background:rgba(255,255,255,0.06); border-radius:10px; padding:14px; margin-bottom:10px; }
+    .rs-web-nav { height:8px; background:rgba(30,123,255,0.45); border-radius:4px; margin-bottom:10px; }
+    .rs-web-hero { height:62px; background:linear-gradient(110deg,rgba(30,123,255,0.35),rgba(255,45,120,0.25)); border-radius:7px; margin-bottom:8px; position:relative; overflow:hidden; }
+    .rs-web-hero::after { content:''; position:absolute; bottom:8px; left:10px; right:50%; height:6px; background:rgba(255,255,255,0.25); border-radius:3px; }
+    .rs-web-lines { display:flex; flex-direction:column; gap:5px; }
+    .rs-web-line { height:5px; background:rgba(255,255,255,0.15); border-radius:3px; }
+    .rs-web-line.short { width:60%; }
+
+    /* Slide: Merch */
+    .rs-tshirt-wrap { margin-bottom:10px; }
+    .rs-tshirt-shape {
+      width:110px; height:95px;
+      background:linear-gradient(135deg,#FF2D78,#FF6FA3);
+      clip-path:polygon(20% 0%,80% 0%,95% 15%,100% 15%,100% 100%,0% 100%,0% 15%,5% 15%);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 8px 24px rgba(255,45,120,0.4);
+    }
+    .rs-tshirt-logo {
+      font-family:'Playfair Display',serif;
+      font-size:0.7rem; font-weight:800; color:white;
+      letter-spacing:0.1em; text-align:center; line-height:1.3;
+    }
+
+    /* Slide: Print */
+    .rs-poster-wrap {
+      width:100%; max-width:200px;
+      background:rgba(255,255,255,0.07);
+      border-radius:8px; padding:12px;
+      margin-bottom:10px;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+    .rs-poster-title { height:14px; background:var(--pink); border-radius:3px; margin-bottom:8px; width:70%; }
+    .rs-poster-sub { height:7px; background:rgba(255,255,255,0.25); border-radius:3px; margin-bottom:8px; }
+    .rs-poster-img { height:55px; background:linear-gradient(135deg,rgba(123,47,190,0.5),rgba(30,123,255,0.3)); border-radius:5px; margin-bottom:8px; }
+    .rs-poster-lines { display:flex; flex-direction:column; gap:4px; }
+    .rs-poster-line { height:4px; background:rgba(255,255,255,0.15); border-radius:2px; }
+
+    /* Slide: Photo */
+    .rs-photo-wrap {
+      width:100%; max-width:240px; height:110px;
+      border-radius:10px; overflow:hidden;
+      position:relative; margin-bottom:6px;
+      border:1px solid rgba(255,255,255,0.15);
+      display:flex;
+    }
+    .rs-before { flex:1; background:linear-gradient(135deg,#4a4a4a,#888); position:relative; }
+    .rs-before::after { content:'BEFORE'; position:absolute; bottom:6px; left:6px; font-family:'DM Mono',monospace; font-size:0.45rem; letter-spacing:0.1em; color:rgba(255,255,255,0.45); }
+    .rs-divider-line { width:2px; background:white; flex-shrink:0; box-shadow:0 0 8px rgba(255,255,255,0.6); }
+    .rs-after { flex:1; background:linear-gradient(135deg,#2a6a4a,#28c86a); position:relative; filter:saturate(1.4); }
+    .rs-after::after { content:'AFTER'; position:absolute; bottom:6px; right:6px; font-family:'DM Mono',monospace; font-size:0.45rem; letter-spacing:0.1em; color:rgba(255,255,255,0.6); }
+
+    .reel-slide-label {
+      font-family:'DM Mono',monospace; font-size:0.62rem;
+      letter-spacing:0.14em; text-transform:uppercase;
+      color:rgba(255,255,255,0.45);
+    }
+
+    /* Reel progress dots */
+    .reel-progress {
+      display:flex; justify-content:center; align-items:center;
+      gap:6px; padding:10px 0; height:34px;
+      background:rgba(0,0,0,0.2);
+      border-top:1px solid rgba(255,255,255,0.06);
+    }
+    .reel-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:rgba(255,255,255,0.2);
+      transition:all 0.35s ease; cursor:pointer;
+    }
+    .reel-dot.is-active { background:var(--pink); width:18px; border-radius:3px; }
+
+    /* Floating badges around reel */
+    .reel-badge {
+      position:absolute;
+      background:rgba(15,25,70,0.75);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:100px;
+      padding:8px 18px;
+      font-size:0.72rem; font-weight:500;
+      color:rgba(255,255,255,0.85); white-space:nowrap;
+      box-shadow:0 8px 24px rgba(0,0,0,0.3);
+    }
+    .rb-1 { top:-18px; right:10px; animation:floatCard 5s ease-in-out infinite; }
+    .rb-2 { bottom:50px; left:-48px; animation:floatCard 7s ease-in-out infinite reverse; }
+    .rb-3 { bottom:-16px; right:16px; animation:floatCard 6s ease-in-out infinite 1.2s; }
+
+    /* CYCLING H1 */
+    .hero-cycle {
+      display:inline-block;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
 
     /* ANIMATIONS */
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
@@ -504,8 +666,8 @@
 
     <div class="hero-left">
       <div class="hero-eyebrow">Design Engineering Studio</div>
-      <h1 class="hero-h1">We design it.<br><span class="blue">We build it.</span><br><span class="pink">We ship it.</span></h1>
-      <p class="hero-sub">Gradiont is Julie Dion's boutique studio for design engineering and digital products — where beautiful UX meets production-ready code.</p>
+      <h1 class="hero-h1">We build<br><span class="blue">beautiful</span><br><span class="pink hero-cycle">websites.</span></h1>
+      <p class="hero-sub"><b class="brand-name">GRA<span class="brand-dion">DION</span>T</b> is a boutique design studio specializing in custom websites, graphics, and digital products — built from scratch and delivered ready to launch.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Start a Project</a>
         <a href="#work" class="btn-ghost">See our work <span>→</span></a>
@@ -521,23 +683,78 @@
     <div class="hero-right">
       <div class="hero-blob blob-blue"></div>
       <div class="hero-blob blob-pink"></div>
-      <div class="hero-card">
-        <div class="hero-card-label">Latest Build</div>
-        <div class="hero-card-title">RunRaise Platform</div>
-        <div class="hero-card-sub">Full-stack fundraising for PTOs</div>
-        <div class="hero-card-stack">
-          <span class="stack-pill">Supabase</span>
-          <span class="stack-pill">Stripe</span>
-          <span class="stack-pill">Vercel</span>
-          <span class="stack-pill pink">React</span>
-          <span class="stack-pill pink">Figma</span>
+
+      <div class="reel-wrap">
+
+        <div class="reel-frame">
+          <div class="reel-chrome">
+            <div class="reel-chrome-dots"><span></span><span></span><span></span></div>
+            <div class="reel-urlbar">gradiont.com</div>
+          </div>
+
+          <div class="reel-viewport">
+
+            <!-- Slide 1: Custom Websites -->
+            <div class="reel-slide rs-web is-active">
+              <div class="rs-web-mock">
+                <div class="rs-web-nav"></div>
+                <div class="rs-web-hero"></div>
+                <div class="rs-web-lines">
+                  <div class="rs-web-line"></div>
+                  <div class="rs-web-line short"></div>
+                </div>
+              </div>
+              <div class="reel-slide-label">Custom Websites</div>
+            </div>
+
+            <!-- Slide 2: Merch & T-Shirts -->
+            <div class="reel-slide rs-merch">
+              <div class="rs-tshirt-wrap">
+                <div class="rs-tshirt-shape">
+                  <div class="rs-tshirt-logo">GRA<span style="color:#FFB3CC">DION</span>T</div>
+                </div>
+              </div>
+              <div class="reel-slide-label">Merch &amp; T-Shirts</div>
+            </div>
+
+            <!-- Slide 3: Print & Signage -->
+            <div class="reel-slide rs-print">
+              <div class="rs-poster-wrap">
+                <div class="rs-poster-title"></div>
+                <div class="rs-poster-sub"></div>
+                <div class="rs-poster-img"></div>
+                <div class="rs-poster-lines">
+                  <div class="rs-poster-line"></div>
+                  <div class="rs-poster-line"></div>
+                </div>
+              </div>
+              <div class="reel-slide-label">Flyers &amp; Print Design</div>
+            </div>
+
+            <!-- Slide 4: Photo Retouching -->
+            <div class="reel-slide rs-photo">
+              <div class="rs-photo-wrap">
+                <div class="rs-before"></div>
+                <div class="rs-divider-line"></div>
+                <div class="rs-after"></div>
+              </div>
+              <div class="reel-slide-label">Photo Retouching</div>
+            </div>
+
+          </div>
+
+          <div class="reel-progress">
+            <span class="reel-dot is-active"></span>
+            <span class="reel-dot"></span>
+            <span class="reel-dot"></span>
+            <span class="reel-dot"></span>
+          </div>
         </div>
-        <div class="hero-card-divider"></div>
-        <div class="hero-card-stat">
-          <div class="stat-item"><div class="stat-n">15+</div><div class="stat-l">Years<br>experience</div></div>
-          <div class="stat-item"><div class="stat-n">24</div><div class="stat-l">Industry<br>awards</div></div>
-          <div class="stat-item"><div class="stat-n">M+</div><div class="stat-l">Users<br>reached</div></div>
-        </div>
+
+        <div class="reel-badge rb-1">✦ Delivered on time</div>
+        <div class="reel-badge rb-2">★ 15+ years exp.</div>
+        <div class="reel-badge rb-3">↗ Ready to launch</div>
+
       </div>
     </div>
   </section>
@@ -545,22 +762,38 @@
   <!-- MARQUEE -->
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
-      <span class="marquee-item"><span class="marquee-dot blue"></span>Design Engineering</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Custom Websites</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Design Engineering</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>T-Shirts &amp; Apparel</span>
       <span class="marquee-item"><span class="marquee-dot pink"></span>AI Product Design</span>
-      <span class="marquee-item"><span class="marquee-dot blue"></span>UX/UI Systems</span>
-      <span class="marquee-item"><span class="marquee-dot pink"></span>React · Supabase · Firebase</span>
-      <span class="marquee-item"><span class="marquee-dot blue"></span>Figma to Production</span>
-      <span class="marquee-item"><span class="marquee-dot pink"></span>Remote Contract</span>
-      <span class="marquee-item"><span class="marquee-dot blue"></span>Design Systems & Tokens</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Custom Mugs &amp; Gifts</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Print &amp; Signage</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Social Media Graphics</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Figma to Production</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Custom HTML Emails</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Shopify Stores</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Photo Retouching</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Design Systems &amp; Tokens</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Flyers &amp; Brochures</span>
       <span class="marquee-item"><span class="marquee-dot pink"></span>Full-Stack Builds</span>
-      <span class="marquee-item"><span class="marquee-dot blue"></span>Design Engineering</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Promo Materials</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Remote Contract</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Custom Websites</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Design Engineering</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>T-Shirts &amp; Apparel</span>
       <span class="marquee-item"><span class="marquee-dot pink"></span>AI Product Design</span>
-      <span class="marquee-item"><span class="marquee-dot blue"></span>UX/UI Systems</span>
-      <span class="marquee-item"><span class="marquee-dot pink"></span>React · Supabase · Firebase</span>
-      <span class="marquee-item"><span class="marquee-dot blue"></span>Figma to Production</span>
-      <span class="marquee-item"><span class="marquee-dot pink"></span>Remote Contract</span>
-      <span class="marquee-item"><span class="marquee-dot blue"></span>Design Systems & Tokens</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Custom Mugs &amp; Gifts</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Print &amp; Signage</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Social Media Graphics</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Figma to Production</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Custom HTML Emails</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Shopify Stores</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Photo Retouching</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Design Systems &amp; Tokens</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Flyers &amp; Brochures</span>
       <span class="marquee-item"><span class="marquee-dot pink"></span>Full-Stack Builds</span>
+      <span class="marquee-item"><span class="marquee-dot blue"></span>Promo Materials</span>
+      <span class="marquee-item"><span class="marquee-dot pink"></span>Remote Contract</span>
     </div>
   </div>
 
@@ -569,9 +802,9 @@
     <div class="services-header reveal">
       <div>
         <div class="section-eyebrow">What we do</div>
-        <h2 class="section-h2">From concept to<br>shipped product.</h2>
+        <h2 class="section-h2">From concept to<br>launch day.</h2>
       </div>
-      <p class="section-sub">Whether you need a design system, a full-stack build, or a senior UX partner — Gradiont brings end-to-end craft to every engagement.</p>
+      <p class="section-sub">Whether you need a design system, a full-stack build, or a senior UX partner — <b class="brand-name">GRA<span class="brand-dion">DION</span>T</b> brings end-to-end craft to every engagement.</p>
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
@@ -611,7 +844,7 @@
     <div class="work-header reveal">
       <div>
         <div class="section-eyebrow">Selected work</div>
-        <h2 class="section-h2">Products built.<br>Problems solved.</h2>
+        <h2 class="section-h2">Work that<br><em style="font-style:italic;color:var(--pink);">speaks for itself.</em></h2>
       </div>
       <a href="mailto:juliedion1@gmail.com" class="btn-ghost" style="color:var(--muted);">All case studies →</a>
     </div>
@@ -619,7 +852,7 @@
 
       <!-- FLAGSHIP -->
       <div class="work-card work-card--flagship reveal">
-        <div class="work-card-img wc-spectrum" style="font-size:4rem;">📡</div>
+        <div class="work-card-img wc-spectrum"><span class="brand-wordmark">Charter<br>Spectrum</span></div>
         <div class="work-card-body">
           <div class="flagship-badge">★ Flagship Project</div>
           <div class="work-card-type">Enterprise UX · 2021–2024</div>
@@ -633,20 +866,7 @@
       </div>
 
       <div class="work-card reveal">
-        <div class="work-card-img wc-runraise">🏃</div>
-        <div class="work-card-body">
-          <div class="work-card-type">Full-Stack Product · 2025</div>
-          <div class="work-card-title">RunRaise</div>
-          <div class="work-card-desc">A full-stack Color Run fundraising platform for PTOs/PTAs — student registration, real-time leaderboards, Stripe-powered donations, and admin dashboards.</div>
-          <div class="work-card-stack">
-            <span class="work-pill">Supabase</span><span class="work-pill">Stripe Connect</span>
-            <span class="work-pill navy">Vercel</span><span class="work-pill navy">React</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="work-card reveal">
-        <div class="work-card-img wc-fort">🎯</div>
+        <div class="work-card-img wc-fort"><span class="brand-wordmark">Fort<br>Crazypants</span></div>
         <div class="work-card-body">
           <div class="work-card-type">E-Commerce · 2024</div>
           <div class="work-card-title">Fort Crazypants</div>
@@ -659,7 +879,7 @@
       </div>
 
       <div class="work-card reveal">
-        <div class="work-card-img wc-pto-shoppe">🛍️</div>
+        <div class="work-card-img wc-pto-shoppe"><span class="brand-wordmark">The PTO<br>Shoppe</span></div>
         <div class="work-card-body">
           <div class="work-card-type">Digital Product · Gradiont</div>
           <div class="work-card-title">The PTA/PTO Shoppe</div>
@@ -673,7 +893,7 @@
 
 
       <div class="work-card reveal">
-        <div class="work-card-img wc-resilix">🏥</div>
+        <div class="work-card-img wc-resilix"><span class="brand-wordmark">Resilix</span></div>
         <div class="work-card-body">
           <div class="work-card-type">0-to-1 · Healthtech</div>
           <div class="work-card-title">Resilix Telenursing</div>
@@ -686,7 +906,7 @@
       </div>
 
       <div class="work-card reveal">
-        <div class="work-card-img wc-pto-site">🏫</div>
+        <div class="work-card-img wc-pto-site"><span class="brand-wordmark">Schalmont<br>PTO</span></div>
         <div class="work-card-body">
           <div class="work-card-type">Web Build · Community</div>
           <div class="work-card-title">Schalmont PTO Site</div>
@@ -783,7 +1003,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Gra<span>dion</span>t</div>
+    <div class="footer-logo">GRA<span class="brand-dion">DION</span>T</div>
     <ul class="footer-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#work">Work</a></li>
@@ -792,7 +1012,7 @@
       <li><a href="creative-brief.html">Creative Brief</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="footer-copy">© <span id="year"></span> Gradiont · Julie Dion. All rights reserved.</div>
+    <div class="footer-copy">© <span id="year"></span> GRA<span class="brand-dion">DION</span>T · Julie Dion. All rights reserved.</div>
   </footer>
 
   <script>
@@ -829,6 +1049,38 @@
       document.getElementById('nav').style.padding =
         window.scrollY > 60 ? '12px 56px' : '20px 56px';
     });
+
+    // Cycling H1
+    const cycleWords = ['websites.', 't-shirts.', 'gifts.', 'digital products.', 'photographs.', 'designs.'];
+    let wordIdx = 0;
+    const cycleEl = document.querySelector('.hero-cycle');
+    function nextWord() {
+      cycleEl.style.opacity = '0';
+      cycleEl.style.transform = 'translateY(10px)';
+      setTimeout(() => {
+        wordIdx = (wordIdx + 1) % cycleWords.length;
+        cycleEl.textContent = cycleWords[wordIdx];
+        cycleEl.style.opacity = '1';
+        cycleEl.style.transform = 'translateY(0)';
+      }, 370);
+    }
+    setInterval(nextWord, 2600);
+
+    // Hero reel cycling
+    const reelSlides = document.querySelectorAll('.reel-slide');
+    const reelDots = document.querySelectorAll('.reel-dot');
+    let reelIdx = 0;
+    function nextSlide() {
+      reelSlides[reelIdx].classList.remove('is-active');
+      reelSlides[reelIdx].classList.add('is-exit');
+      reelDots[reelIdx].classList.remove('is-active');
+      const prev = reelIdx;
+      reelIdx = (reelIdx + 1) % reelSlides.length;
+      reelSlides[reelIdx].classList.add('is-active');
+      reelDots[reelIdx].classList.add('is-active');
+      setTimeout(() => reelSlides[prev].classList.remove('is-exit'), 600);
+    }
+    setInterval(nextSlide, 3200);
   </script>
 </body>
 </html>

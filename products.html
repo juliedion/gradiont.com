@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products — Gradiont</title>
-  <meta name="description" content="Shop Gradiont's physical products for Cricut crafters and WeCreate members — beautifully designed, made to create.">
+  <title>Shop & Services — Gradiont</title>
+  <meta name="description" content="Pricing for web design, custom handmade items, graphics & print, and digital services from Gradiont.">
   <link rel="icon" type="image/jxl" href="Logo/gradiont-favicon.jxl">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,95 +71,115 @@
     .page-eyebrow::before { content:''; display:block; width:32px; height:1px; background:var(--blue-light); }
     .page-h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 800; color: white; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
     .page-h1 .pink { color: var(--pink); font-style: italic; }
-    .page-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 520px; margin: 0 auto; font-weight: 300; }
+    .page-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); max-width: 560px; margin: 0 auto; font-weight: 300; }
 
-    /* TABS */
-    .shop-tabs {
+    /* ANCHOR NAV */
+    .shop-anchor-nav {
       background: white; border-bottom: 1px solid var(--border);
-      display: flex; justify-content: center; gap: 0;
-      position: sticky; top: 64px; z-index: 50;
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+      position: sticky; top: 64px; z-index: 50; overflow-x: auto;
     }
-    .tab-btn {
-      padding: 18px 40px; border: none; background: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
-      color: var(--muted); border-bottom: 2px solid transparent;
+    .anchor-link {
+      padding: 16px 28px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+      font-weight: 500; color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent; white-space: nowrap; display: block;
       transition: color 0.2s, border-color 0.2s;
     }
-    .tab-btn:hover { color: var(--ink); }
-    .tab-btn.active { color: var(--pink); border-bottom-color: var(--pink); }
+    .anchor-link:hover { color: var(--ink); border-bottom-color: var(--border); }
 
-    /* SHOP SECTION */
-    .shop-section { padding: 80px; display: none; }
-    .shop-section.visible { display: block; }
+    /* SHOP SECTIONS */
+    .shop-section { padding: 80px; background: var(--off-white); }
+    .shop-section:nth-of-type(even) { background: white; }
+
+    /* CATEGORY STRIPE HEADER */
+    .cat-stripe {
+      display: flex; align-items: center; gap: 18px; margin-bottom: 52px;
+      padding-bottom: 24px; border-bottom: 1px solid var(--border);
+    }
+    .cat-stripe-icon {
+      width: 56px; height: 56px; border-radius: 16px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .cat-stripe-text .section-eyebrow { margin-bottom: 4px; }
+    .cat-stripe-text .section-h2 { margin-bottom: 0; font-size: clamp(1.5rem, 2.5vw, 2rem); }
+    .cat-stripe-text .section-sub { margin-top: 6px; }
+
+    /* BRAND */
+    .brand-dion { color: var(--pink); font-style: normal; }
     .shop-header { text-align: center; margin-bottom: 56px; }
     .section-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
     .section-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--muted); }
     .section-h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
-    .section-sub { font-size: 1rem; color: var(--muted); max-width: 480px; margin: 0 auto; font-weight: 300; }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 520px; margin: 0 auto; font-weight: 300; }
 
-    /* PRODUCT GRID */
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
+    /* PRICING GRID */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
 
-    .product-card {
+    .pricing-card {
       background: white; border-radius: 20px; overflow: hidden;
       border: 1px solid var(--border); box-shadow: var(--shadow-sm);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex; flex-direction: column;
     }
-    .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .pricing-card.featured {
+      border-color: var(--pink); box-shadow: 0 4px 24px rgba(255,45,120,0.15);
+    }
 
-    .product-img {
-      width: 100%; aspect-ratio: 4/3; background: var(--navy-pale);
+    .pricing-card-top {
+      padding: 32px 28px 24px;
+      border-bottom: 1px solid var(--border);
+      flex: 1;
+    }
+    .pricing-icon {
+      width: 52px; height: 52px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
+      font-size: 1.5rem; margin-bottom: 18px;
     }
-    .product-img.cricut-bg { background: linear-gradient(135deg, #EEF1FB 0%, #E0EDFF 100%); }
-    .product-img.wecreate-bg { background: linear-gradient(135deg, #FFE5EF 0%, #F5F7FF 100%); }
-    .product-img-placeholder {
-      font-size: 3.5rem; opacity: 0.6;
-    }
-    .product-img .coming-soon-badge {
-      position: absolute; bottom: 12px; right: 12px;
-      background: rgba(11,22,64,0.7); color: white;
-      font-family: 'DM Mono', monospace; font-size: 0.6rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 100px; backdrop-filter: blur(8px);
-    }
-    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .icon-blue { background: var(--blue-pale); }
+    .icon-pink { background: var(--pink-pale); }
+    .icon-navy { background: var(--navy-pale); }
+    .icon-green { background: #E6F9F0; }
 
-    .product-body { padding: 24px; }
-    .product-category { font-family: 'DM Mono', monospace; font-size: 0.63rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .product-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.3; }
-    .product-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
-    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .product-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); }
-    .product-price .cents { font-size: 0.85rem; font-weight: 400; }
+    .pricing-category { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .pricing-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+    .pricing-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
 
-    .btn-buy {
+    .pricing-includes { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pricing-includes li {
+      font-size: 0.8rem; color: var(--ink); display: flex; align-items: flex-start; gap: 8px;
+    }
+    .pricing-includes li::before {
+      content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    .pricing-card-footer {
+      padding: 20px 28px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .pricing-from { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .pricing-price { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .pricing-price .unit { font-size: 0.8rem; font-weight: 400; font-family: 'DM Sans', sans-serif; color: var(--muted); }
+
+    .btn-quote {
       background: var(--navy); color: white; border: none; cursor: pointer;
-      padding: 10px 22px; border-radius: 100px; font-family: 'DM Sans', sans-serif;
-      font-size: 0.83rem; font-weight: 500; text-decoration: none;
+      padding: 10px 20px; border-radius: 100px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem; font-weight: 500; text-decoration: none;
       transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    }
+    .btn-quote:hover { background: var(--navy-mid); transform: translateY(-1px); }
+    .btn-quote.pink { background: var(--pink); }
+    .btn-quote.pink:hover { background: #e0175f; }
+
+    /* FEATURED BADGE */
+    .featured-badge {
       display: inline-flex; align-items: center; gap: 6px;
+      background: var(--pink); color: white;
+      font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+      margin-bottom: 12px; width: fit-content;
     }
-    .btn-buy:hover { background: var(--navy-mid); transform: translateY(-1px); }
-    .btn-buy.pink { background: var(--pink); }
-    .btn-buy.pink:hover { background: #e0175f; }
-
-    /* COMING SOON CARD */
-    .product-card.coming-soon .btn-buy { background: var(--muted); cursor: default; }
-    .product-card.coming-soon .btn-buy:hover { transform: none; background: var(--muted); }
-
-    /* BRAND STRIP */
-    .brand-strip {
-      background: var(--navy); padding: 56px 80px;
-      display: flex; align-items: center; justify-content: center; gap: 80px;
-      flex-wrap: wrap;
-    }
-    .brand-item { text-align: center; }
-    .brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: white; margin-bottom: 6px; }
-    .brand-name span { color: var(--pink); }
-    .brand-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.45); font-weight: 300; letter-spacing: 0.04em; }
-    .brand-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.12); }
 
     /* CUSTOM ORDER BANNER */
     .custom-banner {
@@ -167,7 +187,7 @@
       padding: 56px 80px; text-align: center;
     }
     .custom-banner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: white; margin-bottom: 12px; letter-spacing: -0.02em; }
-    .custom-banner p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 28px; font-weight: 300; }
+    .custom-banner p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 28px; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto; }
     .btn-white { background: white; color: var(--pink); padding: 14px 36px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; }
     .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
 
@@ -178,7 +198,7 @@
       border-top: 1px solid var(--border-light);
     }
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800; color: white; }
-    .footer-logo span { color: var(--pink); }
+    .brand-dion { color: var(--pink); font-style: normal; }
     .footer-links { display: flex; gap: 28px; list-style: none; }
     .footer-links a { font-size: 0.83rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: white; }
@@ -190,17 +210,13 @@
 
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
-      .nav-links { gap: 20px; }
+      .nav-links { display: none; }
       .page-hero { padding: 120px 24px 60px; }
       .shop-section { padding: 48px 24px; }
-      .product-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .brand-strip { padding: 40px 24px; gap: 40px; }
+      .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
       .custom-banner { padding: 40px 24px; }
       footer { flex-direction: column; text-align: center; padding: 32px 24px; }
-      .tab-btn { padding: 14px 20px; font-size: 0.82rem; }
-    }
-    @media (max-width: 480px) {
-      .product-grid { grid-template-columns: 1fr; }
+      .tab-btn { padding: 14px 18px; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -224,72 +240,81 @@
     <div class="page-hero-glow glow-blue"></div>
     <div class="page-hero-glow glow-pink"></div>
     <div class="page-hero-content">
-      <div class="page-eyebrow">The Shop</div>
-      <h1 class="page-h1">Products made to<br><span class="pink">inspire & create.</span></h1>
-      <p class="page-sub">Physical products for Cricut crafters and the WeCreate community — designed with the same care we put into everything at Gradiont.</p>
+      <div class="page-eyebrow">Services & Pricing</div>
+      <h1 class="page-h1">Everything you need,<br><span class="pink">priced transparently.</span></h1>
+      <p class="page-sub">From custom websites and handmade merch to print design and digital services — clear pricing, quality work, fast turnaround.</p>
     </div>
   </div>
 
-  <!-- BRAND STRIP -->
-  <div class="brand-strip">
-    <div class="brand-item">
-      <div class="brand-name">Cricut<span>.</span></div>
-      <div class="brand-tagline">Craft supplies & accessories</div>
-    </div>
-    <div class="brand-divider"></div>
-    <div class="brand-item">
-      <div class="brand-name">We<span>Create</span></div>
-      <div class="brand-tagline">Community & maker goods</div>
-    </div>
+  <!-- ANCHOR NAV -->
+  <div class="shop-anchor-nav">
+    <a href="#tab-all" class="anchor-link">All Services</a>
+    <a href="#tab-web" class="anchor-link">Web Design</a>
+    <a href="#tab-handmade" class="anchor-link">Handmade Items</a>
+    <a href="#tab-print" class="anchor-link">Graphics &amp; Print</a>
+    <a href="#tab-digital" class="anchor-link">Digital Services</a>
   </div>
 
-  <!-- TABS -->
-  <div class="shop-tabs">
-    <button class="tab-btn active" data-tab="all">All Products</button>
-    <button class="tab-btn" data-tab="cricut">Cricut</button>
-    <button class="tab-btn" data-tab="wecreate">WeCreate</button>
-  </div>
-
-  <!-- ALL / CRICUT -->
+  <!-- ALL SERVICES -->
   <section class="shop-section visible" id="tab-all">
     <div class="shop-header reveal">
       <div class="section-eyebrow">Everything</div>
-      <h2 class="section-h2">All Products</h2>
-      <p class="section-sub">Browse the full collection across both brands.</p>
+      <h2 class="section-h2">All Services</h2>
+      <p class="section-sub">Browse the full range — from websites to handmade goods to graphics and digital work.</p>
     </div>
-    <div class="product-grid" id="all-grid">
-      <!-- Populated by JS from both collections -->
-    </div>
+    <div class="pricing-grid" id="all-grid"></div>
   </section>
 
-  <section class="shop-section" id="tab-cricut">
+  <!-- WEB DESIGN -->
+  <section class="shop-section" id="tab-web">
     <div class="shop-header reveal">
-      <div class="section-eyebrow">For Cricut Crafters</div>
-      <h2 class="section-h2">Cricut Collection</h2>
-      <p class="section-sub">Everything you need to take your Cricut craft to the next level.</p>
+      <div class="section-eyebrow">Web Design</div>
+      <h2 class="section-h2">Custom Websites</h2>
+      <p class="section-sub">Beautiful, mobile-responsive websites built from scratch — no templates, no shortcuts.</p>
     </div>
-    <div class="product-grid" id="cricut-grid"></div>
+    <div class="pricing-grid" id="web-grid"></div>
   </section>
 
-  <section class="shop-section" id="tab-wecreate">
+  <!-- HANDMADE ITEMS -->
+  <section class="shop-section" id="tab-handmade">
     <div class="shop-header reveal">
-      <div class="section-eyebrow">For the Community</div>
-      <h2 class="section-h2">WeCreate Collection</h2>
-      <p class="section-sub">Maker goods and community essentials, designed to inspire.</p>
+      <div class="section-eyebrow">Handmade Items</div>
+      <h2 class="section-h2">Custom Merch &amp; Promo</h2>
+      <p class="section-sub">Custom mugs, shirts, and promo material — made to order with your designs.</p>
     </div>
-    <div class="product-grid" id="wecreate-grid"></div>
+    <div class="pricing-grid" id="handmade-grid"></div>
+  </section>
+
+  <!-- GRAPHICS & PRINT -->
+  <section class="shop-section" id="tab-print">
+    <div class="shop-header reveal">
+      <div class="section-eyebrow">Graphics &amp; Print</div>
+      <h2 class="section-h2">Print &amp; Signage Design</h2>
+      <p class="section-sub">Print-ready files delivered fast — flyers, brochures, signage, posters, and more.</p>
+    </div>
+    <div class="pricing-grid" id="print-grid"></div>
+  </section>
+
+  <!-- DIGITAL SERVICES -->
+  <section class="shop-section" id="tab-digital">
+    <div class="shop-header reveal">
+      <div class="section-eyebrow">Digital Services</div>
+      <h2 class="section-h2">Digital &amp; Online</h2>
+      <p class="section-sub">HTML emails, Shopify help, social graphics, photo retouching, and more.</p>
+    </div>
+    <div class="pricing-grid" id="digital-grid"></div>
   </section>
 
   <!-- CUSTOM ORDER BANNER -->
   <div class="custom-banner">
-    <h2>Need something custom?</h2>
-    <p>Have a specific project in mind? Start a creative brief and let's build it together.</p>
+    <h2>Not sure what you need?</h2>
+    <p>Fill out a quick creative brief and get a custom quote for your project — no commitment required.</p>
     <a href="creative-brief.html" class="btn-white">Start Your Creative Brief →</a>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Gra<span>dion</span>t</div>
+    <div class="footer-logo">GRA<span class="brand-dion">DION</span>T</div>
     <ul class="footer-links">
       <li><a href="index.html#services">Services</a></li>
       <li><a href="index.html#work">Work</a></li>
@@ -297,150 +322,257 @@
       <li><a href="creative-brief.html">Creative Brief</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <div class="footer-copy">© <span id="year"></span> Gradiont · Julie Dion. All rights reserved.</div>
+    <div class="footer-copy">© <span id="year"></span> Gradiont. All rights reserved.</div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // ─── SERVICE DATA ─────────────────────────────────────────────────────────────
+    const services = [
 
+      // WEB DESIGN
+      {
+        tab: 'web',
+        icon: '🖥️', iconClass: 'icon-blue',
+        category: 'Web Design',
+        name: 'Landing Page',
+        desc: 'A single, polished page for your business, event, or campaign — built to convert.',
+        includes: ['1 fully custom page', 'Mobile-responsive design', 'Contact form', 'Basic on-page SEO', 'Delivered in ~1 week'],
+        fromLabel: 'Starting at',
+        price: '$499',
+        unit: '',
+        cta: 'Get a Quote →',
+        ctaClass: '',
+      },
+      {
+        tab: 'web',
+        icon: '🌐', iconClass: 'icon-blue',
+        category: 'Web Design',
+        name: 'Business Website',
+        desc: 'A professional multi-page site with custom design, clear messaging, and launch support.',
+        includes: ['Up to 5 pages', 'Custom design in Figma', 'Mobile-responsive', 'Google Analytics setup', 'SEO-ready structure'],
+        fromLabel: 'Starting at',
+        price: '$999',
+        unit: '',
+        cta: 'Get a Quote →',
+        ctaClass: '',
+        featured: true,
+      },
+      {
+        tab: 'web',
+        icon: '🛒', iconClass: 'icon-pink',
+        category: 'Web Design · E-Commerce',
+        name: 'Shopify Store',
+        desc: 'A complete Shopify storefront with custom design, product setup, and payment integration.',
+        includes: ['Custom Shopify theme', 'Up to 20 products', 'Payment & shipping setup', 'Mobile-responsive', 'Launch-ready'],
+        fromLabel: 'Starting at',
+        price: '$2,400',
+        unit: '',
+        cta: 'Get a Quote →',
+        ctaClass: 'pink',
+      },
+      {
+        tab: 'web',
+        icon: '⚙️', iconClass: 'icon-navy',
+        category: 'Web Design · Custom',
+        name: 'Custom Web App',
+        desc: 'A full-stack web application with database, auth, custom features, and polished UI.',
+        includes: ['Custom React frontend', 'Database & backend', 'Authentication', 'Admin dashboard', 'Cloud deployment'],
+        fromLabel: 'Starting at',
+        price: '$4,500',
+        unit: '',
+        cta: 'Get a Quote →',
+        ctaClass: '',
+      },
 
-    // ─── PRODUCT DATA ────────────────────────────────────────────────────────────
-    // Add your products here. Set stripePaymentLink to your Stripe Payment Link URL.
-    // Set comingSoon: true while you're still adding photos/stock.
-    const products = [
-      // CRICUT
+      // HANDMADE ITEMS
       {
-        id: 'cricut-001',
-        brand: 'cricut',
-        category: 'Cricut · Materials',
-        name: 'Premium Vinyl Bundle',
-        desc: 'A curated set of permanent adhesive vinyl in trending colors — perfect for mugs, tumblers, and home décor projects.',
-        price: 24.99,
-        emoji: '🎨',
-        stripePaymentLink: '',
-        comingSoon: true,
+        tab: 'handmade',
+        icon: '☕', iconClass: 'icon-pink',
+        category: 'Handmade · Drinkware',
+        name: 'Custom Mugs',
+        desc: 'Sublimation-printed 11oz ceramic mugs with your logo, design, or message. Perfect for events and gifts.',
+        includes: ['Your custom design or logo', '11oz ceramic mug', 'Full-color sublimation print', 'No minimum order', '3–5 day turnaround'],
+        fromLabel: 'Starting at',
+        price: '$14',
+        unit: ' each',
+        cta: 'Order Now →',
+        ctaClass: 'pink',
       },
       {
-        id: 'cricut-002',
-        brand: 'cricut',
-        category: 'Cricut · Tools',
-        name: 'Weeding Tool Set',
-        desc: 'Professional-grade weeding tools designed for precision. Includes hook, tweezers, and spatula in a travel case.',
-        price: 18.00,
-        emoji: '✂️',
-        stripePaymentLink: '',
-        comingSoon: true,
+        tab: 'handmade',
+        icon: '👕', iconClass: 'icon-blue',
+        category: 'Handmade · Apparel',
+        name: 'Custom T-Shirts',
+        desc: 'High-quality tees with custom designs, logos, or text. Heat press or DTF printing available.',
+        includes: ['Your custom design or logo', 'Unisex or fitted cuts', 'Full-color or 1-color print', 'Sizes S–3XL', '5–7 day turnaround'],
+        fromLabel: 'Starting at',
+        price: '$20',
+        unit: ' each',
+        cta: 'Order Now →',
+        ctaClass: '',
       },
       {
-        id: 'cricut-003',
-        brand: 'cricut',
-        category: 'Cricut · Accessories',
-        name: 'Transfer Tape Roll',
-        desc: 'Medium-tack transfer tape that works perfectly with permanent and removable vinyl — no bubbles, no mess.',
-        price: 12.50,
-        emoji: '📦',
-        stripePaymentLink: '',
-        comingSoon: true,
+        tab: 'handmade',
+        icon: '🎁', iconClass: 'icon-green',
+        category: 'Handmade · Promo',
+        name: 'Promo Material Pack',
+        desc: 'Custom branded merchandise bundles — perfect for events, product launches, and giveaways.',
+        includes: ['Mix of mugs, shirts, totes', 'Custom design on all items', 'Custom packaging available', 'Bulk pricing for 10+ pcs', 'Quote-based pricing'],
+        fromLabel: 'Starting at',
+        price: '$85',
+        unit: '',
+        cta: 'Get a Quote →',
+        ctaClass: '',
+      },
+
+      // GRAPHICS & PRINT
+      {
+        tab: 'print',
+        icon: '📄', iconClass: 'icon-blue',
+        category: 'Graphics · Print',
+        name: 'Flyer Design',
+        desc: 'Eye-catching single or double-sided flyer design, delivered as print-ready PDF files.',
+        includes: ['Single or double-sided', 'Print-ready PDF (300dpi)', 'Web/social version included', 'Up to 2 revisions', '1–2 day turnaround'],
+        fromLabel: 'Starting at',
+        price: '$55',
+        unit: '',
+        cta: 'Order Now →',
+        ctaClass: '',
       },
       {
-        id: 'cricut-004',
-        brand: 'cricut',
-        category: 'Cricut · Kits',
-        name: 'Beginner Starter Kit',
-        desc: 'Everything a new Cricut owner needs in one box — vinyl, transfer tape, weeding tools, and a getting-started guide.',
-        price: 49.99,
-        emoji: '🌟',
-        stripePaymentLink: '',
-        comingSoon: true,
-      },
-      // WECREATE
-      {
-        id: 'wc-001',
-        brand: 'wecreate',
-        category: 'WeCreate · Apparel',
-        name: 'WeCreate Maker Tee',
-        desc: 'Soft, fitted crew-neck tee with the WeCreate wordmark. 100% combed cotton. For the maker in all of us.',
-        price: 32.00,
-        emoji: '👕',
-        stripePaymentLink: '',
-        comingSoon: true,
+        tab: 'print',
+        icon: '📰', iconClass: 'icon-pink',
+        category: 'Graphics · Print',
+        name: 'Brochure Design',
+        desc: 'Tri-fold or bi-fold brochure design for your business, event, or nonprofit.',
+        includes: ['Bi-fold or tri-fold layout', 'Print-ready PDF (300dpi)', 'Custom imagery & icons', 'Up to 2 revisions', '2–3 day turnaround'],
+        fromLabel: 'Starting at',
+        price: '$95',
+        unit: '',
+        cta: 'Order Now →',
+        ctaClass: 'pink',
+        featured: true,
       },
       {
-        id: 'wc-002',
-        brand: 'wecreate',
-        category: 'WeCreate · Stationery',
-        name: 'Creator\'s Notebook',
-        desc: 'Dot-grid notebook with 200 pages, lay-flat binding, and a pocket for stickers. Designed for sketching, planning, and making.',
-        price: 22.00,
-        emoji: '📓',
-        stripePaymentLink: '',
-        comingSoon: true,
+        tab: 'print',
+        icon: '🖼️', iconClass: 'icon-navy',
+        category: 'Graphics · Print',
+        name: 'Poster & Print Design',
+        desc: 'Custom poster design for events, promotions, or art prints — any size, print-ready.',
+        includes: ['Any standard print size', 'Print-ready PDF (300dpi)', 'Horizontal or vertical', 'Up to 2 revisions', '1–2 day turnaround'],
+        fromLabel: 'Starting at',
+        price: '$65',
+        unit: '',
+        cta: 'Order Now →',
+        ctaClass: '',
       },
       {
-        id: 'wc-003',
-        brand: 'wecreate',
-        category: 'WeCreate · Accessories',
-        name: 'Maker Enamel Pin Set',
-        desc: 'Three hard enamel pins celebrating the maker lifestyle — scissors, paintbrush, and lightning bolt. Gold plated.',
-        price: 16.00,
-        emoji: '📌',
-        stripePaymentLink: '',
-        comingSoon: true,
+        tab: 'print',
+        icon: '🪧', iconClass: 'icon-green',
+        category: 'Graphics · Signage',
+        name: 'Large Format Signage',
+        desc: 'Banners, yard signs, step-and-repeat, retractable banners, and large print design for events and retail.',
+        includes: ['Any large format size', 'Print-ready files for any printer', 'Banners, yard signs, backdrops', 'Up to 2 revisions', '2–3 day turnaround'],
+        fromLabel: 'Starting at',
+        price: '$120',
+        unit: '',
+        cta: 'Get a Quote →',
+        ctaClass: '',
+      },
+
+      // DIGITAL SERVICES
+      {
+        tab: 'digital',
+        icon: '📧', iconClass: 'icon-pink',
+        category: 'Digital · Email',
+        name: 'Custom HTML Email',
+        desc: 'Pixel-perfect, email-client-compatible HTML email templates for your marketing campaigns.',
+        includes: ['Works in Gmail, Outlook, Apple Mail', 'Mobile-responsive layout', 'Inline CSS (email-safe)', 'Plain text version included', 'Delivered as .html file'],
+        fromLabel: 'Starting at',
+        price: '$175',
+        unit: '',
+        cta: 'Order Now →',
+        ctaClass: 'pink',
+        featured: true,
       },
       {
-        id: 'wc-004',
-        brand: 'wecreate',
-        category: 'WeCreate · Home',
-        name: 'Studio Sticker Sheet',
-        desc: 'A full sheet of 30 vinyl stickers — perfect for your laptop, water bottle, or craft room. Waterproof & UV-resistant.',
-        price: 8.00,
-        emoji: '✨',
-        stripePaymentLink: '',
-        comingSoon: true,
+        tab: 'digital',
+        icon: '🛍️', iconClass: 'icon-blue',
+        category: 'Digital · Shopify',
+        name: 'Shopify Store Help',
+        desc: 'Theme customization, app setup, product configuration, or full store buildout — whatever you need.',
+        includes: ['Theme edits & customization', 'App setup & configuration', 'Product & collection setup', 'Shipping & payment config', 'Hourly or project-based'],
+        fromLabel: 'Starting at',
+        price: '$85',
+        unit: '/hr',
+        cta: 'Get a Quote →',
+        ctaClass: '',
       },
+      {
+        tab: 'digital',
+        icon: '📱', iconClass: 'icon-navy',
+        category: 'Digital · Social Media',
+        name: 'Social Media Graphics',
+        desc: 'Consistent, on-brand social graphics in your brand colors for Instagram, Facebook, and LinkedIn.',
+        includes: ['3 graphics per pack', 'IG Post, Story & FB sizes', 'Editable Canva template', 'Brand-consistent design', '1-day turnaround'],
+        fromLabel: 'Starting at',
+        price: '$75',
+        unit: ' / 3-pack',
+        cta: 'Order Now →',
+        ctaClass: '',
+      },
+      {
+        tab: 'digital',
+        icon: '📷', iconClass: 'icon-green',
+        category: 'Digital · Photography',
+        name: 'Photo Retouching',
+        desc: 'Professional photo editing for portraits, products, and events — clean, natural results.',
+        includes: ['Color & exposure correction', 'Skin retouching (portraits)', 'Background removal available', 'High-res export (JPG + PNG)', '24hr turnaround'],
+        fromLabel: 'Starting at',
+        price: '$15',
+        unit: ' per image',
+        cta: 'Order Now →',
+        ctaClass: '',
+      },
+
     ];
 
     // ─── RENDER ──────────────────────────────────────────────────────────────────
-    function buildCard(p) {
-      const imgClass = p.brand === 'cricut' ? 'cricut-bg' : 'wecreate-bg';
-      const btnClass = p.brand === 'wecreate' ? 'pink' : '';
-      const dollars = Math.floor(p.price);
-      const cents = String(p.price.toFixed(2)).split('.')[1];
-
-      let btnHTML;
-      if (p.comingSoon || !p.stripePaymentLink) {
-        btnHTML = `<button class="btn-buy" disabled style="background:var(--muted);cursor:default;">Coming Soon</button>`;
-      } else {
-        btnHTML = `<a href="${p.stripePaymentLink}" target="_blank" rel="noopener" class="btn-buy ${btnClass}">Buy Now →</a>`;
-      }
-
+    function buildCard(s) {
+      const includesHTML = s.includes.map(i => `<li>${i}</li>`).join('');
+      const featuredHTML = s.featured ? `<div class="featured-badge">★ Popular</div>` : '';
       return `
-        <div class="product-card${p.comingSoon ? ' coming-soon' : ''}" data-brand="${p.brand}">
-          <div class="product-img ${imgClass}">
-            <div class="product-img-placeholder">${p.emoji}</div>
-            ${p.comingSoon ? '<span class="coming-soon-badge">Coming Soon</span>' : ''}
+        <div class="pricing-card reveal${s.featured ? ' featured' : ''}">
+          <div class="pricing-card-top">
+            <div class="pricing-icon ${s.iconClass}">${s.icon}</div>
+            ${featuredHTML}
+            <div class="pricing-category">${s.category}</div>
+            <div class="pricing-name">${s.name}</div>
+            <div class="pricing-desc">${s.desc}</div>
+            <ul class="pricing-includes">${includesHTML}</ul>
           </div>
-          <div class="product-body">
-            <div class="product-category">${p.category}</div>
-            <div class="product-name">${p.name}</div>
-            <div class="product-desc">${p.desc}</div>
-            <div class="product-footer">
-              <div class="product-price">$${dollars}<span class="cents">.${cents}</span></div>
-              ${btnHTML}
+          <div class="pricing-card-footer">
+            <div>
+              <div class="pricing-from">${s.fromLabel}</div>
+              <div class="pricing-price">${s.price}<span class="unit">${s.unit}</span></div>
             </div>
+            <a href="index.html#contact" class="btn-quote ${s.ctaClass}">${s.cta}</a>
           </div>
         </div>`;
     }
 
+    const tabs = ['web', 'handmade', 'print', 'digital'];
     const allGrid = document.getElementById('all-grid');
-    const cricutGrid = document.getElementById('cricut-grid');
-    const wecreateGrid = document.getElementById('wecreate-grid');
 
-    products.forEach(p => {
-      allGrid.innerHTML += buildCard(p);
-      if (p.brand === 'cricut') cricutGrid.innerHTML += buildCard(p);
-      if (p.brand === 'wecreate') wecreateGrid.innerHTML += buildCard(p);
+    tabs.forEach(tab => {
+      const grid = document.getElementById(tab + '-grid');
+      services.filter(s => s.tab === tab).forEach(s => {
+        const card = buildCard(s);
+        grid.innerHTML += card;
+        allGrid.innerHTML += card;
+      });
     });
 
     // ─── TABS ────────────────────────────────────────────────────────────────────
@@ -454,11 +586,15 @@
     });
 
     // ─── REVEAL ──────────────────────────────────────────────────────────────────
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    reveals.forEach(r => observer.observe(r));
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(r => revealObserver.observe(r));
+
+    // Re-observe after JS renders cards
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(r => revealObserver.observe(r));
+    }, 100);
   </script>
 </body>
 </html>
